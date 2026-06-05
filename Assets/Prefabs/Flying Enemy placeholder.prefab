@@ -235,7 +235,7 @@ MonoBehaviour:
   rangeH: 3.72
   playerLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   boxOffset: {x: 2.47, y: -3.59}
   isCooldownActive: 0
 --- !u!114 &4871296687726302631

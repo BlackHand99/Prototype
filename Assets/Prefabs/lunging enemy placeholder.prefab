@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 9022653365504203578}
   - component: {fileID: 6415890858077162078}
   - component: {fileID: 5085378669590806373}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: lunging enemy placeholder
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -223,7 +223,7 @@ MonoBehaviour:
   colliderDistance: 1.05
   playerLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 1024
   enemyLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -289,7 +289,7 @@ MonoBehaviour:
   damage: 3
   playerLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 1024
   boxCollider: {fileID: 7474024567080357523}
   rb: {fileID: 5085378669590806373}
   windupDelay: 1
