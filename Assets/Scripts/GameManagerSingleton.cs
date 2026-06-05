@@ -3,27 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// To use: access with SingletonSimple.Instance
 
 
 public class GameManagerSingleton : MonoBehaviour
 {
-    // This is really the only blurb of code you need to implement a Unity singleton
-    private static GameManagerSingleton _Instance;
-    public static GameManagerSingleton Instance
+    public static GameManagerSingleton Instance { get; private set; }
+    private void Awake()
     {
-        get
+        //prevent duplicate 
+        if (Instance != null && Instance != this)
         {
-            if (!_Instance)
-            {
-                _Instance = new GameObject().AddComponent<GameManagerSingleton>();
-                // name it for easy recognition
-                _Instance.name = _Instance.GetType().ToString();
-                // mark root as DontDestroyOnLoad();
-                DontDestroyOnLoad(_Instance.gameObject);
-            }
-            return _Instance;
+            Destroy(gameObject);
+            return;
         }
+
+        Instance = this;
+
+        //persist across scenes
+        DontDestroyOnLoad(gameObject);
     }
 
     private Vector3 playerPosition;
@@ -37,8 +34,20 @@ public class GameManagerSingleton : MonoBehaviour
     }
 
     public Vector3 GetPlayerPosition() => playerPosition;
+
+
+    //enemy global aggro
+    public bool GlobalAlert { get; private set; }
+
+    public void TriggerGlobalAlert()
+    {
+        GlobalAlert = true;
+    }
+
+    public void ResetGlobalAlert()
+    {
+        GlobalAlert = false;
+    }
 }
 
-
-    // implement your Awake, Start, Update, or other methods here...
 

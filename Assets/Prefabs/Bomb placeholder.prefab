@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7379791808085222776
+--- !u!1 &1692626635609274568
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,44 +8,44 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6448632854879669279}
-  - component: {fileID: 9121490165289081461}
-  - component: {fileID: 7798953494814519182}
-  - component: {fileID: 5240769844958829304}
-  - component: {fileID: 667187723616031882}
-  - component: {fileID: 4549828878525857284}
-  - component: {fileID: 6205084902961855322}
-  - component: {fileID: 8970823497217260837}
-  m_Layer: 11
+  - component: {fileID: 7971587956704595460}
+  - component: {fileID: 2017114377198345689}
+  - component: {fileID: 3131249938082528286}
+  - component: {fileID: 5574347332917134582}
+  - component: {fileID: 170469621502974313}
+  - component: {fileID: 4545140763102055427}
+  - component: {fileID: 3558911290405873890}
+  - component: {fileID: 5827451167939851642}
+  m_Layer: 9
   m_Name: Bomb placeholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6448632854879669279
+--- !u!4 &7971587956704595460
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7379791808085222776}
+  m_GameObject: {fileID: 1692626635609274568}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.7, y: -6.1, z: 0}
+  m_LocalPosition: {x: -6.3243566, y: -0.26181412, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &9121490165289081461
+--- !u!212 &2017114377198345689
 SpriteRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7379791808085222776}
+  m_GameObject: {fileID: 1692626635609274568}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -97,31 +97,31 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &7798953494814519182
+--- !u!114 &3131249938082528286
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7379791808085222776}
+  m_GameObject: {fileID: 1692626635609274568}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef496a1ccddf65e4c90d76536cb91e03, type: 3}
+  m_Script: {fileID: 11500000, guid: d9a2f0e71cf51a141a75509a0983e32c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Bomb
+  m_EditorClassIdentifier: '::'
   fuzeTime: 3
   explosionRadius: 0.25
   damage: 2
   playerLayer:
     serializedVersion: 2
-    m_Bits: 1024
---- !u!58 &5240769844958829304
+    m_Bits: 8
+--- !u!58 &5574347332917134582
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7379791808085222776}
+  m_GameObject: {fileID: 1692626635609274568}
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
@@ -131,7 +131,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 5120
+    m_Bits: 8
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -151,14 +151,14 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.64
---- !u!50 &667187723616031882
+--- !u!50 &170469621502974313
 Rigidbody2D:
   serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7379791808085222776}
+  m_GameObject: {fileID: 1692626635609274568}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -173,18 +173,18 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 1536
+    m_Bits: 264
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &4549828878525857284
+--- !u!61 &4545140763102055427
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7379791808085222776}
+  m_GameObject: {fileID: 1692626635609274568}
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
@@ -224,31 +224,31 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.28, y: 1.28}
   m_EdgeRadius: 0
---- !u!114 &6205084902961855322
+--- !u!114 &3558911290405873890
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7379791808085222776}
+  m_GameObject: {fileID: 1692626635609274568}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef496a1ccddf65e4c90d76536cb91e03, type: 3}
+  m_Script: {fileID: 11500000, guid: d9a2f0e71cf51a141a75509a0983e32c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Bomb
+  m_EditorClassIdentifier: '::'
   fuzeTime: 3
   explosionRadius: 0.25
   damage: 2
   playerLayer:
     serializedVersion: 2
-    m_Bits: 1024
---- !u!58 &8970823497217260837
+    m_Bits: 8
+--- !u!58 &5827451167939851642
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7379791808085222776}
+  m_GameObject: {fileID: 1692626635609274568}
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
