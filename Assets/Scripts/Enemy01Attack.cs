@@ -22,8 +22,12 @@ public class Enemy01Attack : MonoBehaviour
     [SerializeField] private float lungeDuration = 0.2f;
     [SerializeField] private float recoveryTime = 1f;
     private bool attacking;
+    private bool hasHitPlayer;
+    private bool lunging;
     public float attackRange => range;
     public bool IsAttacking => attacking;
+
+    public bool IsLunging => lunging;
 
     private Health playerHealth;
     private Animator anim;
@@ -39,6 +43,8 @@ public class Enemy01Attack : MonoBehaviour
     public IEnumerator LungeAttack(Vector2 playerPos)
     {
         attacking = true;
+        lunging = true;
+        hasHitPlayer = false;
 
         // stop current movement
         rb.linearVelocity = Vector2.zero;
@@ -57,7 +63,27 @@ public class Enemy01Attack : MonoBehaviour
             rb.linearVelocity.y
         );
 
+        while (timer < lungeDuration)
+        {
+            Collider2D hit = Physics2D.OverlapBox(
+                transform.position,
+                attackBoxSize,
+                0,
+                playerLayer
+            );
+
+            if (hit != null && !hasHitPlayer)
+            {
+                hit.GetComponent<Health>()?.TakeDamage(damage);
+                hasHitPlayer = true;
+            }
+
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
         yield return new WaitForSeconds(lungeDuration);
+
 
         // stop lunge
         rb.linearVelocity = new Vector2(
@@ -68,6 +94,7 @@ public class Enemy01Attack : MonoBehaviour
         yield return new WaitForSeconds(recoveryTime);
 
         attacking = false;
+        lunging = false;
     }
 
     public bool PlayerInRange()
@@ -108,5 +135,19 @@ public class Enemy01Attack : MonoBehaviour
             center,
             attackBoxSize
         );
+    }
+    private void Update()
+    {
+        Collider2D hit =
+            Physics2D.OverlapCircle(
+                transform.position,
+                2f,
+                playerLayer
+            );
+
+        if (hit != null)
+        {
+            Debug.Log("Player found");
+        }
     }
 }
