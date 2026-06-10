@@ -25,4 +25,5 @@ public class Enemy : MonoBehaviour
     {
         transform.right = -transform.right;
     }
+
 }

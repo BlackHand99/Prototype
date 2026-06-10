@@ -162,7 +162,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -190,7 +190,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.33, y: 1.03}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &1134347852055030448
 MonoBehaviour:
@@ -226,7 +226,7 @@ MonoBehaviour:
     m_Bits: 1024
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 512
   boxCollider: {fileID: 7474024567080357523}
   rb: {fileID: 5085378669590806373}
   maxRange: 8
@@ -259,7 +259,7 @@ Animator:
   m_GameObject: {fileID: 1622229654436607152}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 81eb607860622824e9f4ce615754821f, type: 2}
+  m_Controller: {fileID: 9100000, guid: fccac3040a65e25418968cfc4599747f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -333,7 +333,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 3584
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0

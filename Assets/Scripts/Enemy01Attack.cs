@@ -43,8 +43,6 @@ public class Enemy01Attack : MonoBehaviour
     public IEnumerator LungeAttack(Vector2 playerPos)
     {
         attacking = true;
-        lunging = true;
-        hasHitPlayer = false;
 
         // stop current movement
         rb.linearVelocity = Vector2.zero;
@@ -58,10 +56,15 @@ public class Enemy01Attack : MonoBehaviour
         float dir =
             Mathf.Sign(playerPos.x - transform.position.x);
 
+        lunging = true;
+        hasHitPlayer = false;
+
         rb.linearVelocity = new Vector2(
             dir * lungeForce,
             rb.linearVelocity.y
         );
+
+        float timer = 0f;
 
         while (timer < lungeDuration)
         {
@@ -81,8 +84,6 @@ public class Enemy01Attack : MonoBehaviour
             timer += Time.deltaTime;
             yield return null;
         }
-
-        yield return new WaitForSeconds(lungeDuration);
 
 
         // stop lunge

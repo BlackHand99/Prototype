@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class DamageEnemy : MonoBehaviour
 {
-    private float health;
+    private int health;
     [SerializeField] private int maxHealth = 3;
 
     private void Start()
