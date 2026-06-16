@@ -39,10 +39,20 @@ public class RangedEnemyAttack : MonoBehaviour
 
     private void Shoot()
     {
-        Instantiate(
-            beakProjectile,
-            firePoint.position,
-            firePoint.rotation
-        );
+        GameObject beak =
+            Instantiate(
+                beakProjectile,
+                firePoint.position,
+                Quaternion.identity
+            );
+
+        Vector2 direction =
+            (
+                GameManagerSingleton.Instance.GetPlayerPosition()
+                - firePoint.position
+            ).normalized;
+
+        beak.GetComponent<BeakProjectile>()
+            .Initialize(direction);
     }
 }

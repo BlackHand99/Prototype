@@ -9,10 +9,11 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField] private float startingHealth;
+    [SerializeField] private Rigidbody2D rb;
     public float CurrentHealth { get; private set; }
 
     private Animator anim;
-    private bool dead;
+    private bool isDead;
 
     private void Start()
     {
@@ -20,16 +21,41 @@ public class Health : MonoBehaviour
 
     }
 
-    public void TakeDamage(float damage)
+    public void ApplyKnockback(
+    Vector2 direction,
+    float force
+)
     {
+        rb.linearVelocity = Vector2.zero;
+
+        rb.AddForce(
+            direction.normalized * force,
+            ForceMode2D.Impulse
+        );
+    }
+
+    public void TakeDamage(
+        float damage,
+        Vector2 knockbackDirection,
+        float knockbackForce
+    )
+    {
+        if (isDead)
+        {
+            return;
+        }
         CurrentHealth -= damage;
 
-            if (CurrentHealth <= 0)
-            {
-                Destroy(gameObject);
-             
-            }
+        rb.linearVelocity = Vector2.zero;
 
-        
+        rb.AddForce(
+            knockbackDirection.normalized * knockbackForce,
+            ForceMode2D.Impulse
+        );
+
+        if (CurrentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

@@ -12,8 +12,6 @@ public class EnemyPatrol : MonoBehaviour
     [SerializeField] private float detectInterval;
     [SerializeField] private float colliderDistance;
     [SerializeField] private LayerMask playerLayer;
-    private Chase chase;
-    private bool alerted;
 
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private BoxCollider2D boxCollider;
@@ -50,7 +48,6 @@ public class EnemyPatrol : MonoBehaviour
     private void Awake()
     {
         initScale = transform.localScale;
-        chase = GetComponent<Chase>();
     }
 
     private void FixedUpdate()
@@ -58,7 +55,7 @@ public class EnemyPatrol : MonoBehaviour
         if (!canMove)
             return;
 
-        if (chase != null && IsChasing)
+        if (IsChasing)
             return;
 
         float target = movingToB ? patrolB : patrolA;
@@ -99,18 +96,18 @@ public class EnemyPatrol : MonoBehaviour
 
     private IEnumerator DetectEnemy()
     {
-        while (!alerted)
+        while (true)
         {
             yield return new WaitForSeconds(detectInterval);
 
+            if (GameManagerSingleton.Instance.GlobalAlert)
+                continue;
+
             if (PlayerInSight())
             {
-                alerted = true;
-
                 rb.linearVelocity = Vector2.zero;
 
                 GameManagerSingleton.Instance.TriggerGlobalAlert();
-
             }
         }
     }

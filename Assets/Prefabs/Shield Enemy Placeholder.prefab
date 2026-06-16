@@ -17,9 +17,9 @@ GameObject:
   - component: {fileID: 7081122784237435298}
   - component: {fileID: 2246247694786803692}
   - component: {fileID: 6799721759097322537}
-  - component: {fileID: 3143301162209254536}
   - component: {fileID: 9138315115541591785}
   - component: {fileID: 724053937153878395}
+  - component: {fileID: 5200040638715932435}
   m_Layer: 9
   m_Name: Shield Enemy Placeholder
   m_TagString: Enemy
@@ -260,6 +260,7 @@ MonoBehaviour:
   lungeForce: 20
   lungeDuration: 0.5
   recoveryTime: 1
+  knockbackForce: 0
   isCooldownActive: 0
 --- !u!114 &2246247694786803692
 MonoBehaviour:
@@ -274,6 +275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyContDamage
   damage: 3
+  knockbackForce: 8
 --- !u!114 &6799721759097322537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,19 +307,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   patrolSpeed: 3
---- !u!114 &3143301162209254536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4493451492308323}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f1458f96ed4c9148b2f502ac4b9c910, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Health
-  startingHealth: 3
 --- !u!95 &9138315115541591785
 Animator:
   serializedVersion: 7
@@ -352,6 +341,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a11c14e37b45bf4899fc2c56b400778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+--- !u!114 &5200040638715932435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4493451492308323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0b4dd98b54d127479f22e256fef0e41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
+  maxHealth: 3
 --- !u!1 &8261214526918707740
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,7 +421,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 1.99, y: -0.07}
+  m_Offset: {x: 0.42, y: -0.07}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -429,7 +431,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 3.26, y: 2.1}
+  m_Size: {x: 0.58, y: 2.1}
   m_EdgeRadius: 0
 --- !u!114 &3807535446320615844
 MonoBehaviour:

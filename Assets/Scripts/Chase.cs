@@ -51,11 +51,10 @@ public class Chase : MonoBehaviour
                 rb.linearVelocity.y
             );
 
-            if (!attack.IsAttacking)
+            if (attack.PlayerInRange() && attack.CanAttack)
             {
-                StartCoroutine(
-                    attack.LungeAttack(playerPos)
-                );
+
+                StartCoroutine(attack.LungeAttack(playerPos));
             }
         }
 

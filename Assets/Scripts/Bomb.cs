@@ -7,6 +7,7 @@ public class Bomb : MonoBehaviour
     [SerializeField] float explosionRadius;
     [SerializeField] int damage;
     [SerializeField] private LayerMask playerLayer;
+    [SerializeField] private float knockbackForce;
 
     private Health playerHealth;
 
@@ -29,7 +30,16 @@ public class Bomb : MonoBehaviour
         {
             playerHealth = hit.collider.GetComponent<Health>();
 
-            playerHealth.TakeDamage(damage);
+            Vector2 knockbackDir =
+                (transform.position - transform.position).normalized;
+
+            knockbackDir = new Vector2(knockbackDir.x, knockbackForce).normalized;
+
+            playerHealth.TakeDamage(
+                damage,
+                knockbackDir,
+                knockbackForce
+            );
         }
 
         Destroy(gameObject);

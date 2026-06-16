@@ -12,13 +12,13 @@ GameObject:
   - component: {fileID: 2266107077290121931}
   - component: {fileID: 7474024567080357523}
   - component: {fileID: 6888169753071954474}
+  - component: {fileID: 5085378669590806373}
   - component: {fileID: 1134347852055030448}
   - component: {fileID: 7488978922398622928}
-  - component: {fileID: 1412656638731466429}
   - component: {fileID: 753508133395949171}
   - component: {fileID: 9022653365504203578}
   - component: {fileID: 6415890858077162078}
-  - component: {fileID: 5085378669590806373}
+  - component: {fileID: 5872094322503413724}
   m_Layer: 9
   m_Name: lunging enemy placeholder
   m_TagString: Enemy
@@ -192,6 +192,33 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &5085378669590806373
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622229654436607152}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 2560
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!114 &1134347852055030448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,6 +232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyContDamage
   damage: 2
+  knockbackForce: 8
 --- !u!114 &7488978922398622928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,19 +264,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   patrolSpeed: 2
---- !u!114 &1412656638731466429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1622229654436607152}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f1458f96ed4c9148b2f502ac4b9c910, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Health
-  startingHealth: 3
 --- !u!95 &753508133395949171
 Animator:
   serializedVersion: 7
@@ -296,6 +311,7 @@ MonoBehaviour:
   lungeForce: 20
   lungeDuration: 0.5
   recoveryTime: 1
+  knockbackForce: 8
   isCooldownActive: 0
 --- !u!114 &6415890858077162078
 MonoBehaviour:
@@ -311,30 +327,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Chase
   chaseSpeed: 5
   rb: {fileID: 5085378669590806373}
---- !u!50 &5085378669590806373
-Rigidbody2D:
-  serializedVersion: 5
+--- !u!114 &5872094322503413724
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1622229654436607152}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 3584
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0b4dd98b54d127479f22e256fef0e41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
+  maxHealth: 3

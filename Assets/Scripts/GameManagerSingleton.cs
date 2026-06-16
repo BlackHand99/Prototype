@@ -8,6 +8,9 @@ using UnityEngine;
 public class GameManagerSingleton : MonoBehaviour
 {
     public static GameManagerSingleton Instance { get; private set; }
+
+    public float PerformanceScore;
+    public int ConsecutiveNoHitRooms;
     private void Awake()
     {
         //prevent duplicate 

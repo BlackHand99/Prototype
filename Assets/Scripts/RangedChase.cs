@@ -7,6 +7,7 @@ public class RangedChase : MonoBehaviour
 
     [Header("Ranges")]
     [SerializeField] private float retreatDistance = 4f;
+    [SerializeField] private float approachDistance = 9f;
     [SerializeField] public float attackDistance = 8f;
 
     [SerializeField] private Rigidbody2D rb;
@@ -52,7 +53,7 @@ public class RangedChase : MonoBehaviour
 
         Vector2 velocity = rb.linearVelocity;
 
-        if (distance > attackDistance)
+        if (distance > approachDistance)
         {
             // Move closer
             float dir = Mathf.Sign(moveDir);

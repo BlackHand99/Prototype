@@ -21,7 +21,7 @@ public class ShotgunPellets : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        if (collision.gameObject.TryGetComponent(out DamageEnemy health))
+        if (collision.gameObject.TryGetComponent(out EnemyHealth health))
         {
             health.TakeDamage(damage);
         }

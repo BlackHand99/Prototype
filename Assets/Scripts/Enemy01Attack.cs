@@ -21,17 +21,17 @@ public class Enemy01Attack : MonoBehaviour
     [SerializeField] private float lungeForce = 12f;
     [SerializeField] private float lungeDuration = 0.2f;
     [SerializeField] private float recoveryTime = 1f;
+    [SerializeField] private float knockbackForce;
     private bool attacking;
     private bool hasHitPlayer;
     private bool lunging;
     public float attackRange => range;
     public bool IsAttacking => attacking;
 
+    public bool CanAttack => !attacking;
     public bool IsLunging => lunging;
 
-    private Health playerHealth;
     private Animator anim;
-    private Chase chase;
 
     public bool isCooldownActive;
 
@@ -42,6 +42,9 @@ public class Enemy01Attack : MonoBehaviour
     }
     public IEnumerator LungeAttack(Vector2 playerPos)
     {
+        if (attacking)
+            yield break;
+
         attacking = true;
 
         // stop current movement
@@ -77,8 +80,31 @@ public class Enemy01Attack : MonoBehaviour
 
             if (hit != null && !hasHitPlayer)
             {
-                hit.GetComponent<Health>()?.TakeDamage(damage);
-                hasHitPlayer = true;
+                Health playerHealth = hit.GetComponentInParent<Health>();
+
+                if (playerHealth != null)
+                {
+                    Vector2 knockbackDir =
+                        (hit.transform.position - transform.position).normalized;
+
+                    knockbackDir = new Vector2(
+                        knockbackDir.x,
+                        knockbackForce
+                    ).normalized;
+
+                    playerHealth.TakeDamage(
+                        damage,
+                        knockbackDir,
+                        knockbackForce
+                    );
+
+                    if (hit != null)
+                    {
+                        Debug.Log("Lunge hit: " + hit.name);
+                    }
+
+                    hasHitPlayer = true;
+                }
             }
 
             timer += Time.deltaTime;
@@ -94,8 +120,10 @@ public class Enemy01Attack : MonoBehaviour
 
         yield return new WaitForSeconds(recoveryTime);
 
-        attacking = false;
         lunging = false;
+
+        attacking = false;
+
     }
 
     public bool PlayerInRange()

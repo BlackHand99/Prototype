@@ -51,7 +51,7 @@ public class PistolBullet : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (collision.gameObject.TryGetComponent(out DamageEnemy health))
+        if (collision.gameObject.TryGetComponent(out EnemyHealth health))
         {
             Debug.Log("Damaging enemy");
             health.TakeDamage(damage);
