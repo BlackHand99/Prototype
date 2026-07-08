@@ -23,6 +23,7 @@ public class BeakProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+
         if ((wallLayer.value &
             (1 << other.gameObject.layer)) != 0)
         {

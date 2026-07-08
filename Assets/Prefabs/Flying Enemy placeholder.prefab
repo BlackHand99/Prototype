@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 4871296687726302631}
   - component: {fileID: 7044687161621606490}
   m_Layer: 9
-  m_Name: Flying enemy placeholder
+  m_Name: Flying Enemy placeholder
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -220,11 +220,11 @@ MonoBehaviour:
   throwForce: 8
   attackCooldown: 2
   rangeW: 5.95
-  rangeH: 3.72
+  rangeH: 34.4
   playerLayer:
     serializedVersion: 2
     m_Bits: 1024
-  boxOffset: {x: 2.47, y: -3.59}
+  boxOffset: {x: 2.47, y: -1.06}
   isCooldownActive: 0
 --- !u!114 &4871296687726302631
 MonoBehaviour:
