@@ -19,7 +19,7 @@ public class ChaseFlying : MonoBehaviour
 
         Vector3 pos = transform.position;
 
-        float targetY = playerPos.y + flyHeight;
+        float targetY = flyHeight;
 
         float displacement = targetY - pos.y;
 
@@ -32,11 +32,11 @@ public class ChaseFlying : MonoBehaviour
 
         float xDiff = playerPos.x - pos.x;
 
-        if (Mathf.Abs(xDiff) > attackRange)
-        {
-            pos.x += Mathf.Sign(xDiff) * moveSpeed * Time.fixedDeltaTime;
-        }
-
+            if (Mathf.Abs(xDiff) > attackRange)
+            {
+                pos.x += Mathf.Sign(xDiff) * moveSpeed * Time.fixedDeltaTime;
+            }
+        
 
         transform.position = pos;
 

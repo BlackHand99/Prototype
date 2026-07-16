@@ -14,7 +14,7 @@ public class PistolBullet : MonoBehaviour
         BulletVelocity();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    /* private void OnTriggerEnter2D(Collider2D collision)
     {
         if((bulletDestroy.value & (1 << collision.gameObject.layer)) > 0)
         {
@@ -24,10 +24,26 @@ public class PistolBullet : MonoBehaviour
         {
             health.TakeDamage(damage);
         }
-    }
+    } */
 
     private void BulletVelocity()
     {
         myRigidBody2D.linearVelocity = transform.right * speed;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("Bullet hit: " + collision.name);
+
+        if ((bulletDestroy.value & (1 << collision.gameObject.layer)) > 0)
+        {
+            Destroy(gameObject);
+        }
+
+        if (collision.gameObject.TryGetComponent(out EnemyHealth health))
+        {
+            Debug.Log("Damaging enemy");
+            health.TakeDamage(damage);
+        }
     }
 }

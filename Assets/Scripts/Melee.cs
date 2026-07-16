@@ -24,7 +24,7 @@ public class Melee : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            if (enemy.TryGetComponent<DamageEnemy>(out var damageEnemy))
+            if (enemy.TryGetComponent<EnemyHealth>(out var damageEnemy))
             {
                 damageEnemy.TakeDamage(damage);
             }
