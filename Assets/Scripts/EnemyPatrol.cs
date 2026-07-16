@@ -6,226 +6,178 @@ using UnityEngine;
 
 public class EnemyPatrol : MonoBehaviour
 {
-    //chase stuff
-    [SerializeField] private float detectionSizeOffset;
+
+    [SerializeField] private float detectionRange;
     [SerializeField] private float detectionSize;
     [SerializeField] private float detectInterval;
     [SerializeField] private float colliderDistance;
     [SerializeField] private LayerMask playerLayer;
-
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private BoxCollider2D boxCollider;
-    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private float allyAggroRadius;
 
-
+    private Chase chase;
     private Animator anim;
     private Enemy01Attack eA;
 
-    private bool canMove;
-    private bool IsChasing =>
-    GameManagerSingleton.Instance.GlobalAlert;
+    private Chase eC;
 
-    //patrol stuff
-    private float corridorLeft;
-    private float corridorRight;
-    [SerializeField] private float maxRange;
-    [SerializeField] private float minRange;
+    [Header("Patrol Range Settings")]
+    [SerializeField] private float minRange = 2f;
+    [SerializeField] private float maxRange = 8f;
 
-    //prevents collider getting stuck in wall
-    [SerializeField] private float wallPadding = 0.5f;
-
-    private float patrolA;
-    private float patrolB;
-    private bool movingToB = true;
-
+    [Header("Raycast Settings")]
     [SerializeField] private LayerMask groundMask;
+    private float rayHeightOffset = 0.5f;
+
+    [Header("Results")]
+    private float patrolLeft;
+    private float patrolRight;
+
+    [Header("Enemy")]
+    [SerializeField] private Transform enemy;
 
     [Header("MovementParameter")]
     [SerializeField] private float patrolSpeed;
+    [SerializeField] private float flipCooldownTime = 0.25f;
+    private float flipCooldown = 0f;
+    private int direction = 1;
 
     private Vector3 initScale;
 
     private void Awake()
     {
-        initScale = transform.localScale;
+        initScale = enemy.localScale;
+
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        if (!canMove)
-            return;
+        flipCooldown -= Time.deltaTime;
 
-        if (IsChasing)
-            return;
+        Vector2 origin = (Vector2)transform.position + Vector2.up * 0.2f;
 
-        float target = movingToB ? patrolB : patrolA;
+        RaycastHit2D wallHit = Physics2D.Raycast(
+            origin,
+            Vector2.right * direction,
+            0.3f,
+            groundMask
+        );
 
-        float moveDir = Mathf.Sign(target - rb.position.x);
+        Vector3 pos = transform.position;
 
-        Vector2 velocity = rb.linearVelocity;
+        bool shouldFlip = false;
 
-        velocity.x = moveDir * patrolSpeed;
+        // Wall check
+        if (wallHit.collider != null)
+            shouldFlip = true;
 
-        rb.linearVelocity = velocity;
+        // Bounds check
+        if (pos.x >= patrolRight || pos.x <= patrolLeft)
+            shouldFlip = true;
 
-        // switch target when reached
-        if (Mathf.Abs(rb.position.x - target) < 0.05f)
+        // Apply flip only if cooldown allows it
+        if (shouldFlip && flipCooldown <= 0f)
         {
-            movingToB = !movingToB;
+            direction *= -1;
+            flipCooldown = flipCooldownTime; // prevents rapid bouncing
         }
 
-        //visual facing
-        if (Mathf.Abs(moveDir) > 0.01f)
-        {
-            transform.localScale = new Vector3(
-                Mathf.Abs(initScale.x) * Mathf.Sign(moveDir),
-                initScale.y,
-                initScale.z
-            );
-        }
+        // Move AFTER decision
+        pos.x += direction * patrolSpeed * Time.deltaTime;
+        transform.position = pos;
+
+        // Flip visuals
+        transform.localScale = new Vector3(
+            Mathf.Abs(transform.localScale.x) * direction,
+            transform.localScale.y,
+            transform.localScale.z
+        );
     }
+
     private void Start()
     {
+        CalculatePatrolBounds();
         StartCoroutine(DetectEnemy());
-        StartCoroutine(StartMoveDelay());
-
-        CalculateCorridor();
-        PickPatrolPoints();
-
     }
 
     private IEnumerator DetectEnemy()
     {
-        while (true)
         {
             yield return new WaitForSeconds(detectInterval);
-
-            if (GameManagerSingleton.Instance.GlobalAlert)
-                continue;
-
             if (PlayerInSight())
             {
-                rb.linearVelocity = Vector2.zero;
-
-                GameManagerSingleton.Instance.TriggerGlobalAlert();
+                RaycastHit2D hit = Physics2D.CircleCast(transform.position, 10f * allyAggroRadius, Vector2.up, 0, enemyLayer);
+                //eC.chase=true
             }
+
         }
     }
-    private IEnumerator StartMoveDelay()
+
+
+
+    private void CalculatePatrolBounds()
     {
-        yield return new WaitForSeconds(0.2f);
-        canMove = true;
+        Vector2 origin = (Vector2)transform.position + Vector2.up * 0.2f;
+
+        // Detect real world limits
+        RaycastHit2D hitLeft = Physics2D.Raycast(origin, Vector2.left, maxRange, groundMask);
+        RaycastHit2D hitRight = Physics2D.Raycast(origin, Vector2.right, maxRange, groundMask);
+
+        float leftLimit = hitLeft.collider ? hitLeft.distance : maxRange;
+        float rightLimit = hitRight.collider ? hitRight.distance : maxRange;
+
+        // Convert to world positions
+        float worldLeft = transform.position.x - leftLimit;
+        float worldRight = transform.position.x + rightLimit;
+
+        // Safety: ensure valid space
+        if (worldRight - worldLeft < minRange)
+        {
+            patrolLeft = worldLeft;
+            patrolRight = worldRight;
+            return;
+        }
+
+        // Pick two random points inside the valid space
+        float a = Random.Range(worldLeft, worldRight);
+        float b = Random.Range(worldLeft, worldRight);
+
+        patrolLeft = Mathf.Min(a, b);
+        patrolRight = Mathf.Max(a, b);
     }
+
+
+
     private void OnDrawGizmos()
     {
         var boxCollider = GetComponent<BoxCollider2D>();
 
-        Vector2 direction =
-            transform.localScale.x > 0
-            ? Vector2.right
-            : Vector2.left;
-
-        Vector2 center =
-            (Vector2)boxCollider.bounds.center +
-            direction * detectionSizeOffset * colliderDistance;
-
         Gizmos.color = Color.blue;
+        Gizmos.DrawWireCube(boxCollider.bounds.center + transform.right * detectionRange * transform.localScale.x * colliderDistance, new Vector3(detectionSize, boxCollider.bounds.size.y, boxCollider.bounds.size.z));
 
-        Gizmos.DrawWireCube(
-            center,
-            new Vector3(
-                detectionSize,
-                boxCollider.bounds.size.y,
-                1
-            )
-        );
+        //Patrol points gizmo
 
-#if UNITY_EDITOR
+        Vector2 origin = transform.position + Vector3.up * rayHeightOffset;
 
-        // Patrol corridor
-        Gizmos.color = Color.yellow;
-
-        Gizmos.DrawLine(
-            new Vector3(corridorLeft, transform.position.y, 0),
-            new Vector3(corridorRight, transform.position.y, 0)
-        );
-
-        // Patrol point A
-        Gizmos.color = Color.green;
-
-        Gizmos.DrawSphere(
-            new Vector3(patrolA, transform.position.y, 0),
-            0.15f
-        );
-
-        // Patrol point B
         Gizmos.color = Color.red;
+        Gizmos.DrawLine(origin, origin + Vector2.left * maxRange);
+        Gizmos.DrawLine(origin, origin + Vector2.right * maxRange);
 
-        Gizmos.DrawSphere(
-            new Vector3(patrolB, transform.position.y, 0),
-            0.15f
-        );
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(new Vector2(patrolLeft, transform.position.y - 0.5f),
+                        new Vector2(patrolLeft, transform.position.y + 0.5f));
 
-#endif
+        Gizmos.DrawLine(new Vector2(patrolRight, transform.position.y - 0.5f),
+                        new Vector2(patrolRight, transform.position.y + 0.5f));
     }
 
 
     private bool PlayerInSight()
     {
-        Vector2 direction =
-            transform.localScale.x > 0
-            ? Vector2.right
-            : Vector2.left;
+        RaycastHit2D hit = Physics2D.BoxCast(boxCollider.bounds.center + transform.right * detectionRange * transform.localScale.x * colliderDistance, new Vector3(boxCollider.bounds.size.x, boxCollider.bounds.size.y, boxCollider.bounds.size.z), 0, Vector2.left, 0, playerLayer);
 
-        Vector2 center =
-            (Vector2)boxCollider.bounds.center +
-            direction * detectionSizeOffset * colliderDistance;
+        return hit.collider != null;
 
-        Collider2D hit = Physics2D.OverlapBox(
-            center,
-            new Vector2(
-                detectionSize,
-                boxCollider.bounds.size.y
-            ),
-            0,
-            playerLayer
-        );
-
-        return hit != null;
-    }
-
-    private void CalculateCorridor()
-    {
-        Vector2 origin = (Vector2)transform.position + Vector2.up * 0.2f;
-
-        RaycastHit2D hitLeft =
-            Physics2D.Raycast(origin, Vector2.left, maxRange, groundMask);
-
-        RaycastHit2D hitRight =
-            Physics2D.Raycast(origin, Vector2.right, maxRange, groundMask);
-
-        float leftDist = hitLeft.collider ? hitLeft.distance : maxRange;
-        float rightDist = hitRight.collider ? hitRight.distance : maxRange;
-
-        corridorLeft = transform.position.x - leftDist + wallPadding;
-        corridorRight = transform.position.x + rightDist - wallPadding;
-    }
-
-    private void PickPatrolPoints()
-    {
-        patrolA = Random.Range(corridorLeft, corridorRight);
-        patrolB = Random.Range(corridorLeft, corridorRight);
-
-        if (Mathf.Abs(patrolA - patrolB) < minRange)
-        {
-            patrolB = patrolA +
-                Mathf.Sign(Random.value - 0.5f) * minRange;
-
-            patrolB = Mathf.Clamp(
-                patrolB,
-                corridorLeft,
-                corridorRight
-            );
-        }
     }
 }

@@ -1,29 +1,45 @@
 using UnityEngine;
 using System.Collections;
 
-public abstract class EnemySpawner : MonoBehaviour
+public class EnemySpawner : MonoBehaviour
 {
-    [Header("Enemy Settings")]
-    [SerializeField] protected GameObject[] enemyPrefabs;
+    [SerializeField] private GameObject[] enemyPrefabs;
+    [SerializeField] private float spawnInterval = 3f;
+    [SerializeField] private Transform[] spawnPoints;
 
-    [Header("Spawn Settings")]
-    [SerializeField] protected float spawnInterval = 3f;
+    public bool spawnActive;
 
-    protected virtual void Start()
+    private void Awake()
     {
-        StartCoroutine(SpawnLoop());
+        StartCoroutine(SpawnTimer());
     }
-
-    private IEnumerator SpawnLoop()
+    public IEnumerator SpawnTimer()
     {
-        while (true)
-        {
-            yield return new WaitForSeconds(spawnInterval);
+        spawnActive = false;
+        yield return new WaitForSeconds(spawnInterval);
+        spawnActive = true;
+    }
+    void Update()
+    {
 
+        if (spawnActive == true)
+        {
             SpawnEnemy();
+            StartCoroutine(SpawnTimer());
         }
     }
 
-    protected abstract void SpawnEnemy();
+    void SpawnEnemy()
+    {
+        if (enemyPrefabs.Length == 0 || spawnPoints.Length == 0) return;
+
+        int enemyIndex = Random.Range(0, enemyPrefabs.Length);
+        int spawnIndex = Random.Range(0, spawnPoints.Length);
+
+        GameObject enemyPrefab = enemyPrefabs[enemyIndex];
+        Transform spawnPoint = spawnPoints[spawnIndex];
+
+        Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+    }
 }
 

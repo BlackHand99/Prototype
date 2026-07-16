@@ -20,7 +20,7 @@ public class SniperBullet : MonoBehaviour
             Destroy(gameObject);
         }
         else
-        if (collision.gameObject.TryGetComponent(out EnemyHealth health))
+        if (collision.gameObject.TryGetComponent(out DamageEnemy health))
         {
             health.TakeDamage(damage);
         }
