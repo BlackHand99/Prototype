@@ -3,9 +3,9 @@ using UnityEngine.InputSystem;
 
 public class InteractibleNpc : MonoBehaviour, IInteractible
 {
-    //[SerializeField] PistolBullet otherScript;
-
     private WeaponManager _weaponManager;
+
+    [SerializeField] private UpgradeMenu upgradeMenu;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -27,9 +27,6 @@ public class InteractibleNpc : MonoBehaviour, IInteractible
 
     public void Interact(GameObject player)
     {
-        //Destroy(gameObject);
-        //_weaponManager.pistol.FireRateUpgrade();
-        //_weaponManager.pistolBullet.DamageUpgrade();
-        _weaponManager.pistolBullet.BulletSpeedUpgrade();
+        upgradeMenu.Open(_weaponManager);
     }
 }

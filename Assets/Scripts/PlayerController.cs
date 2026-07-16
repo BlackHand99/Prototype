@@ -181,4 +181,11 @@ public class PlayerController : MonoBehaviour
             lastPosition = transform.position;
         }
     }
+
+    public void BarkShoes()
+    {
+        speed *= 1.5f;
+        jumpForce *= 1.3f;
+        dashSpeed *= 1.5f;
+    }
 }

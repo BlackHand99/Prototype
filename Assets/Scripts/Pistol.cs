@@ -17,7 +17,13 @@ public class Pistol : MonoBehaviour, IGun
     private bool isShooting;
     private bool isMouseDown;
 
+    [SerializeField] private float bulletSizeMultiplier = 1f;
+
     [SerializeField] private bool automatic = true;
+
+    [SerializeField] private float bulletSpeed = 25f;
+
+    [SerializeField] private float bulletDamage = 1;
 
     [SerializeField] public float fireRate = 120f;
 
@@ -25,9 +31,31 @@ public class Pistol : MonoBehaviour, IGun
 
     private Coroutine fireRoutine;
 
-    public void FireRateUpgrade()
+    public void HeavyBarkUpgrade()
     {
-        fireRate = fireRate + fireRateUpgrade;
+        fireRate *= 0.5f;
+        bulletDamage *= 2.5f;
+    }
+
+    public void LightBarkUpgrade()
+    {
+        fireRate *= 2.5f;
+        bulletDamage *= 0.6f;
+    }
+
+    public void CannonballUpgrade()
+    {
+        fireRate *= 0.3f;
+        bulletDamage *= 3.5f;
+        bulletSpeed *= 0.6f;
+        bulletSizeMultiplier *= 3f;
+    }
+
+    public void MinigunUpgrade()
+    {
+        fireRate *= 5f;
+        bulletDamage *= 0.25f;
+        bulletSpeed *= 2f;
     }
 
     private void OnDisable()
@@ -65,7 +93,14 @@ public class Pistol : MonoBehaviour, IGun
 
     private void Fire()
     {
-        Instantiate(bullet, bulletOrigin.position, bulletOrigin.rotation);
+        GameObject pistolBullet = Instantiate(bullet, bulletOrigin.position, bulletOrigin.rotation);
+
+        pistolBullet.transform.localScale *= bulletSizeMultiplier;
+
+        PistolBullet PistolBullet = pistolBullet.GetComponent<PistolBullet>();
+
+        PistolBullet.speed = bulletSpeed;
+        PistolBullet.damage = bulletDamage;
     }
 
     internal void SetActive(bool v)

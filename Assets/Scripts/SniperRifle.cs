@@ -18,6 +18,8 @@ public class SniperRifle : MonoBehaviour, IGun
 
     [SerializeField] private float fireRate = 120f;
 
+    [SerializeField] private float bulletSizeMultiplier = 1f;
+
     private Coroutine fireRoutine;
 
     private void OnDisable()
@@ -55,6 +57,8 @@ public class SniperRifle : MonoBehaviour, IGun
     private void Fire()
     {
         Instantiate(bullet, bulletOrigin.position, bulletOrigin.rotation);
+
+        bullet.transform.localScale *= bulletSizeMultiplier;
     }
 
     public void TryFire(InputAction.CallbackContext context)
@@ -74,5 +78,11 @@ public class SniperRifle : MonoBehaviour, IGun
                 StartCoroutine(SemiAutomatic());
             }
         }
+    }
+
+    public void RailgunUpgrade()
+    {
+        bulletSizeMultiplier *= 3f;
+        fireRate *= 0.7f;
     }
 }

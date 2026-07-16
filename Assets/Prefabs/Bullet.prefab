@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 004fa5d7c1919424c976f7327186acf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BulletBehaviour
-  <speed>k__BackingField: 25
+  speed: 0
   bulletDestroy:
     serializedVersion: 2
     m_Bits: 704

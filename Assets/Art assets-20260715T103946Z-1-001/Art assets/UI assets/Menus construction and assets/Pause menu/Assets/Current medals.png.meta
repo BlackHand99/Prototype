@@ -1,0 +1,455 @@
+fileFormatVersion: 2
+guid: aaa21bedf1325594b908fb50e3e7fb58
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8667322440159788513
+    second: Current medals_0
+  - first:
+      213: -3578192898289470303
+    second: Current medals_1
+  - first:
+      213: -6952481593757473658
+    second: Current medals_2
+  - first:
+      213: 62868772594914075
+    second: Current medals_3
+  - first:
+      213: -2048838776233744529
+    second: Current medals_4
+  - first:
+      213: -1658554099949679346
+    second: Current medals_5
+  - first:
+      213: -1569505229210753557
+    second: Current medals_6
+  - first:
+      213: -2469515463708293154
+    second: Current medals_7
+  - first:
+      213: 1742581126886190951
+    second: Current medals_8
+  - first:
+      213: -2676264652063990621
+    second: Current medals_9
+  - first:
+      213: -4243842823997772012
+    second: Current medals_10
+  - first:
+      213: -4612106663850326652
+    second: Current medals_11
+  - first:
+      213: -9206853950042498112
+    second: Current medals_12
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Current medals_0
+      rect:
+        serializedVersion: 2
+        x: 1889
+        y: 1479
+        width: 426
+        height: 529
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f120180892c77b780800000000000000
+      internalID: -8667322440159788513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Current medals_1
+      rect:
+        serializedVersion: 2
+        x: 2305
+        y: 1540
+        width: 260
+        height: 358
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a471af5484b75ec0800000000000000
+      internalID: -3578192898289470303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Current medals_2
+      rect:
+        serializedVersion: 2
+        x: 2553
+        y: 1572
+        width: 212
+        height: 330
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 684e4a883d2d38f90800000000000000
+      internalID: -6952481593757473658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Current medals_3
+      rect:
+        serializedVersion: 2
+        x: 2768
+        y: 1606
+        width: 176
+        height: 304
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b131cf9c0da5fd000800000000000000
+      internalID: 62868772594914075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Current medals_4
+      rect:
+        serializedVersion: 2
+        x: 2953
+        y: 1635
+        width: 119
+        height: 283
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f67aa8cfcff0193e0800000000000000
+      internalID: -2048838776233744529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Current medals_5
+      rect:
+        serializedVersion: 2
+        x: 3078
+        y: 1655
+        width: 131
+        height: 269
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0d4bbf55d1abf8e0800000000000000
+      internalID: -1658554099949679346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Current medals_6
+      rect:
+        serializedVersion: 2
+        x: 3217
+        y: 1681
+        width: 106
+        height: 247
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be566c34f4ff73ae0800000000000000
+      internalID: -1569505229210753557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Current medals_7
+      rect:
+        serializedVersion: 2
+        x: 2619
+        y: 1348
+        width: 188
+        height: 246
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed7455215c48abdd0800000000000000
+      internalID: -2469515463708293154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Current medals_8
+      rect:
+        serializedVersion: 2
+        x: 2815
+        y: 1353
+        width: 100
+        height: 196
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76fe9546d44ee2810800000000000000
+      internalID: 1742581126886190951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Current medals_9
+      rect:
+        serializedVersion: 2
+        x: 2918
+        y: 1356
+        width: 144
+        height: 206
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ac9ac87a7ffbdad0800000000000000
+      internalID: -2676264652063990621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Current medals_10
+      rect:
+        serializedVersion: 2
+        x: 3070
+        y: 1360
+        width: 177
+        height: 231
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41fa509bf67da15c0800000000000000
+      internalID: -4243842823997772012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Current medals_11
+      rect:
+        serializedVersion: 2
+        x: 3253
+        y: 1365
+        width: 138
+        height: 245
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4854dfadc618effb0800000000000000
+      internalID: -4612106663850326652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Current medals_12
+      rect:
+        serializedVersion: 2
+        x: 3398
+        y: 1366
+        width: 226
+        height: 276
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cb90d8cc1faa3080800000000000000
+      internalID: -9206853950042498112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Current medals_0: -8667322440159788513
+      Current medals_1: -3578192898289470303
+      Current medals_10: -4243842823997772012
+      Current medals_11: -4612106663850326652
+      Current medals_12: -9206853950042498112
+      Current medals_2: -6952481593757473658
+      Current medals_3: 62868772594914075
+      Current medals_4: -2048838776233744529
+      Current medals_5: -1658554099949679346
+      Current medals_6: -1569505229210753557
+      Current medals_7: -2469515463708293154
+      Current medals_8: 1742581126886190951
+      Current medals_9: -2676264652063990621
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

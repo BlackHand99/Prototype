@@ -1,0 +1,455 @@
+fileFormatVersion: 2
+guid: 084ae9285e5e0444b8e2bf0941296ee2
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8567795430585849993
+    second: Pause upgrades capt_0
+  - first:
+      213: -8514609074088665457
+    second: Pause upgrades capt_1
+  - first:
+      213: 6856155663627700279
+    second: Pause upgrades capt_2
+  - first:
+      213: -8903586401238109335
+    second: Pause upgrades capt_3
+  - first:
+      213: -4245865785097776205
+    second: Pause upgrades capt_4
+  - first:
+      213: 1461208876669889081
+    second: Pause upgrades capt_5
+  - first:
+      213: -602184134525749235
+    second: Pause upgrades capt_6
+  - first:
+      213: -984460731086995043
+    second: Pause upgrades capt_7
+  - first:
+      213: -3081606711025093219
+    second: Pause upgrades capt_8
+  - first:
+      213: 4977120793172438920
+    second: Pause upgrades capt_9
+  - first:
+      213: 6724232060955547391
+    second: Pause upgrades capt_10
+  - first:
+      213: -6582581393207044415
+    second: Pause upgrades capt_11
+  - first:
+      213: 2956997265441026462
+    second: Pause upgrades capt_12
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Pause upgrades capt_0
+      rect:
+        serializedVersion: 2
+        x: 1889
+        y: 1479
+        width: 426
+        height: 529
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77727b33373191980800000000000000
+      internalID: -8567795430585849993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pause upgrades capt_1
+      rect:
+        serializedVersion: 2
+        x: 2305
+        y: 1540
+        width: 260
+        height: 358
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8e90a1d82806d980800000000000000
+      internalID: -8514609074088665457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pause upgrades capt_2
+      rect:
+        serializedVersion: 2
+        x: 2553
+        y: 1572
+        width: 212
+        height: 330
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 738cf472045f52f50800000000000000
+      internalID: 6856155663627700279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pause upgrades capt_3
+      rect:
+        serializedVersion: 2
+        x: 2768
+        y: 1606
+        width: 176
+        height: 304
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 963343f575b107480800000000000000
+      internalID: -8903586401238109335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pause upgrades capt_4
+      rect:
+        serializedVersion: 2
+        x: 2953
+        y: 1635
+        width: 119
+        height: 283
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b313436097a315c0800000000000000
+      internalID: -4245865785097776205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pause upgrades capt_5
+      rect:
+        serializedVersion: 2
+        x: 3078
+        y: 1655
+        width: 131
+        height: 269
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93a6e844bb1474410800000000000000
+      internalID: 1461208876669889081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pause upgrades capt_6
+      rect:
+        serializedVersion: 2
+        x: 3217
+        y: 1681
+        width: 106
+        height: 247
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d08773c58bc94a7f0800000000000000
+      internalID: -602184134525749235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pause upgrades capt_7
+      rect:
+        serializedVersion: 2
+        x: 2619
+        y: 1348
+        width: 188
+        height: 246
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d910d345e2e7652f0800000000000000
+      internalID: -984460731086995043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pause upgrades capt_8
+      rect:
+        serializedVersion: 2
+        x: 2815
+        y: 1353
+        width: 100
+        height: 196
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d95b3ebf50feb35d0800000000000000
+      internalID: -3081606711025093219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pause upgrades capt_9
+      rect:
+        serializedVersion: 2
+        x: 2918
+        y: 1356
+        width: 144
+        height: 206
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88fe041ddf8421540800000000000000
+      internalID: 4977120793172438920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pause upgrades capt_10
+      rect:
+        serializedVersion: 2
+        x: 3070
+        y: 1360
+        width: 177
+        height: 231
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff65c84de65415d50800000000000000
+      internalID: 6724232060955547391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pause upgrades capt_11
+      rect:
+        serializedVersion: 2
+        x: 3253
+        y: 1365
+        width: 138
+        height: 245
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c65cc05919f5a4a0800000000000000
+      internalID: -6582581393207044415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pause upgrades capt_12
+      rect:
+        serializedVersion: 2
+        x: 3398
+        y: 1366
+        width: 226
+        height: 276
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e91f968985d590920800000000000000
+      internalID: 2956997265441026462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Pause upgrades capt_0: -8567795430585849993
+      Pause upgrades capt_1: -8514609074088665457
+      Pause upgrades capt_10: 6724232060955547391
+      Pause upgrades capt_11: -6582581393207044415
+      Pause upgrades capt_12: 2956997265441026462
+      Pause upgrades capt_2: 6856155663627700279
+      Pause upgrades capt_3: -8903586401238109335
+      Pause upgrades capt_4: -4245865785097776205
+      Pause upgrades capt_5: 1461208876669889081
+      Pause upgrades capt_6: -602184134525749235
+      Pause upgrades capt_7: -984460731086995043
+      Pause upgrades capt_8: -3081606711025093219
+      Pause upgrades capt_9: 4977120793172438920
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

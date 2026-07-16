@@ -7,6 +7,7 @@ public class ShotgunPellets : MonoBehaviour
     [SerializeField] private float speed = 10f;
     [SerializeField] private LayerMask bulletDestroy;
     [SerializeField] private int damage = 1;
+    [SerializeField] public float bulletTime = 0.5f;
 
     private void Start()
     {
@@ -33,7 +34,7 @@ public class ShotgunPellets : MonoBehaviour
     }
     private IEnumerator DestroyPellets()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(bulletTime);
         Destroy(gameObject);
     }
 }

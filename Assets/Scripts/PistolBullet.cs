@@ -3,21 +3,10 @@ using UnityEngine;
 public class PistolBullet : MonoBehaviour
 {
     private Rigidbody2D myRigidBody2D;
-    [field:SerializeField] public float speed { get; private set; } = 25f;
+    public float speed;
     [SerializeField] private LayerMask bulletDestroy;
-    [SerializeField] public int damage = 1;
-    [SerializeField] private int speedUpgradeAmount = 15;
-    [SerializeField] private int damageUpgradeAmount = 1;
-
-    public void BulletSpeedUpgrade()
-    {
-        speed = speed + speedUpgradeAmount;
-    }
-
-    public void DamageUpgrade()
-    {
-        damage = damage + damageUpgradeAmount;
-    }
+    public float damage;
+    [SerializeField] private float bulletSize = 1f;
 
     private void Start()
     {

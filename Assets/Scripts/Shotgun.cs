@@ -10,6 +10,8 @@ public class Shotgun : MonoBehaviour, IGun
 
     [SerializeField] private Transform bulletOrigin;
 
+    private Rigidbody2D myRigidBody;
+
     private GameObject bulletInstantiate;
 
     private bool isShooting;
@@ -23,7 +25,18 @@ public class Shotgun : MonoBehaviour, IGun
 
     [SerializeField] private float fireRate = 120f;
 
+    [SerializeField] private float bulletTime = 0.5f;
+
     private Coroutine fireRoutine;
+
+    private bool shotgunJumpEnabled = false;
+
+    [SerializeField] private float jumpForce = 10f;
+
+    private void Start()
+    {
+        myRigidBody = GetComponentInParent<Rigidbody2D>();
+    }
 
     private void OnDisable()
     {
@@ -65,6 +78,15 @@ public class Shotgun : MonoBehaviour, IGun
         {
             GameObject myBullet =  Instantiate(bullet, bulletOrigin.position, bulletOrigin.rotation);
             myBullet.transform.right = fireDirections[i];
+
+            ShotgunPellets pellets = myBullet.GetComponent<ShotgunPellets>();
+            pellets.bulletTime = bulletTime;
+
+            if (shotgunJumpEnabled)
+            {
+                Vector2 recoil = -bulletOrigin.right * jumpForce;
+                myRigidBody.AddForce(recoil, ForceMode2D.Impulse);
+            }
         }
     }
 
@@ -117,5 +139,17 @@ public class Shotgun : MonoBehaviour, IGun
                 StartCoroutine(SemiAutomatic());
             }
         }
+    }
+
+    public void FunnelShotUpgrade()
+    {
+        spreadAngle -= 10f;
+        bulletCount += 1;
+        bulletTime += 0.3f;
+    }
+
+    public void ShotgunJumpUpgrade()
+    {
+        shotgunJumpEnabled = true;
     }
 }
