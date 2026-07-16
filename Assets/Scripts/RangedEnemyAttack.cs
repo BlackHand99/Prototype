@@ -47,10 +47,13 @@ public class RangedEnemyAttack : MonoBehaviour
             );
 
         Vector2 direction =
-            (
-                GameManagerSingleton.Instance.GetPlayerPosition()
-                - firePoint.position
-            ).normalized;
+        (
+            GameManagerSingleton.Instance.GetPlayerPosition()
+            - (Vector2)firePoint.position
+        ).normalized;
+
+        beak.GetComponent<BeakProjectile>()
+            .Initialize(direction);
 
         beak.GetComponent<BeakProjectile>()
             .Initialize(direction);

@@ -177,7 +177,6 @@ public class PlayerController : MonoBehaviour
     {
         if (transform.position != lastPosition)
         {
-            GameManagerSingleton.Instance.SetPlayerPosition(transform.position);
             lastPosition = transform.position;
         }
     }
