@@ -66,9 +66,9 @@ public class UpgradeMenu : MonoBehaviour
         Close();
     }
 
-    public void ShotgunJump()
+    public void Buckshot()
     {
-        weaponManager.shotgun.ShotgunJumpUpgrade();
+        weaponManager.shotgun.BuckshotUpgrade();
         weaponManager.UnlockSniper();
         Close();
     }

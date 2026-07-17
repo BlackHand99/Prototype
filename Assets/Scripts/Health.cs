@@ -60,8 +60,6 @@ public class Health : MonoBehaviour
 
             isDead = true;
             deathUI.DeathPanel();
-            Destroy(gameObject);
-
         }
     }
 
