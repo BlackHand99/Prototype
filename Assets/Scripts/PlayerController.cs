@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float fallGravity = 4f;
 
+    [SerializeField] private float jumpGravity = 2f;
+
     [SerializeField] private float maxFallSpeed = 15f;
 
     [SerializeField] private float speed = 5f;
@@ -123,7 +125,11 @@ public class PlayerController : MonoBehaviour
         }
         if (!isDashing)
         {
-            if (myRigidBody2D.linearVelocity.y < 0)
+            if (myRigidBody2D.linearVelocity.y > 0)
+            {
+                myRigidBody2D.gravityScale = jumpGravity;
+            }
+            else if (myRigidBody2D.linearVelocity.y < 0)
             {
                 myRigidBody2D.gravityScale = fallGravity;
                 myRigidBody2D.linearVelocity = new Vector2(myRigidBody2D.linearVelocity.x, Mathf.Max(myRigidBody2D.linearVelocity.y, -maxFallSpeed));

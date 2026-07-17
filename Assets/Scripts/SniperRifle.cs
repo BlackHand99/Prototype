@@ -9,9 +9,16 @@ public class SniperRifle : MonoBehaviour, IGun
 
     [SerializeField] private Transform bulletOrigin;
 
+    [SerializeField] private Sprite normalSniper;
+
+    [SerializeField] private Sprite railgunSniper;
+
+    [SerializeField] private SpriteRenderer spriteRenderer;
+
     private GameObject bulletInstantiate;
 
     private bool isShooting;
+
     private bool isMouseDown;
 
     [SerializeField] private bool automatic = true;
@@ -83,5 +90,6 @@ public class SniperRifle : MonoBehaviour, IGun
     {
         bulletSizeMultiplier *= 3f;
         fireRate *= 0.7f;
+        spriteRenderer.sprite = railgunSniper;
     }
 }

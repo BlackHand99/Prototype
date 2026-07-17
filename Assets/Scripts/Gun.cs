@@ -7,6 +7,11 @@ public class Gun : MonoBehaviour
 
     private Camera cam;
 
+    private void Start()
+    {
+        Cursor.visible = false;
+    }
+
     private void Awake()
     {
         cam = Camera.main;
@@ -16,10 +21,8 @@ public class Gun : MonoBehaviour
     {
         Vector3 MousePos = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         MousePos.z = 0;
-        //gunPivot.transform.right = MousePos - gunPivot.position;
         Vector2 direction = MousePos - gunPivot.position;
         gunPivot.right = direction;
-
         if (direction.x < 0)
         {
             gunPivot.localScale = new Vector3(1, -1, 1);

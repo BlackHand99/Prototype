@@ -11,10 +11,16 @@ public class Pistol : MonoBehaviour, IGun
 
     [SerializeField] private Transform bulletOrigin;
 
+    [SerializeField] private Sprite normalPistol;
+
+    [SerializeField] private Sprite minigunPistol;
+
+    [SerializeField] private SpriteRenderer spriteRenderer;
 
     private GameObject bulletInstantiate;
 
     private bool isShooting;
+
     private bool isMouseDown;
 
     [SerializeField] private float bulletSizeMultiplier = 1f;
@@ -56,6 +62,7 @@ public class Pistol : MonoBehaviour, IGun
         fireRate *= 5f;
         bulletDamage *= 0.25f;
         bulletSpeed *= 2f;
+        spriteRenderer.sprite = minigunPistol;
     }
 
     private void OnDisable()

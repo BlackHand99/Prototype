@@ -9,15 +9,8 @@ public class Hazards : MonoBehaviour
     {
         if (collision.TryGetComponent(out Health health))
         {
-            Vector2 knockbackDir =
-                ((Vector2)collision.transform.position -
-                (Vector2)transform.position).normalized;
-
-            health.TakeDamage(
-                damage,
-                knockbackDir,
-                knockbackForce
-            );
+            Vector2 knockbackDir = ((Vector2)collision.transform.position - (Vector2)transform.position).normalized;
+            health.TakeDamage(damage, knockbackDir, knockbackForce);
         }
     }
 }
