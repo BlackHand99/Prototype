@@ -5,11 +5,11 @@ using UnityEngine.InputSystem;
 public class WeaponManager : MonoBehaviour
 {
 
-    [field:SerializeField] public Pistol pistol { get; private set; }
+    [field:SerializeField] public Pistol flicker { get; private set; }
     [field:SerializeField] public PistolBullet pistolBullet {  get; private set; }
     [field: SerializeField] public Shotgun shotgun { get; private set; }
 
-    [field: SerializeField] public SniperRifle sniper { get; private set; }
+    [field: SerializeField] public SniperRifle railgun { get; private set; }
 
     private IGun currentGun;
 
@@ -19,19 +19,17 @@ public class WeaponManager : MonoBehaviour
 
     private void Start()
     {
-        pistol.gameObject.SetActive(false);
+        flicker.gameObject.SetActive(false);
         shotgun.gameObject.SetActive(false);
-        sniper.gameObject.SetActive(false);
+        railgun.gameObject.SetActive(false);
     }
 
     private void ActiveWeapon(GameObject weaponInHand)
     {
-        pistol.gameObject.SetActive(false);
+        flicker.gameObject.SetActive(false);
         shotgun.gameObject.SetActive(false);
-        sniper.gameObject.SetActive(false);
-
+        railgun.gameObject.SetActive(false);
         weaponInHand.SetActive(true);
-
         currentGun = weaponInHand.GetComponent<IGun>();
     }
 
@@ -61,13 +59,12 @@ public class WeaponManager : MonoBehaviour
 
     public void UnlockPistol()
     {
-        if (unlockedWeapons.Contains(pistol.gameObject))
+        if (unlockedWeapons.Contains(flicker.gameObject))
             return;
 
-        unlockedWeapons.Add(pistol.gameObject);
-
+        unlockedWeapons.Add(flicker.gameObject);
         currentWeaponIndex = unlockedWeapons.Count - 1;
-        ActiveWeapon(pistol.gameObject);
+        ActiveWeapon(flicker.gameObject);
     }
 
     public void UnlockShotgun()
@@ -76,19 +73,17 @@ public class WeaponManager : MonoBehaviour
             return;
 
         unlockedWeapons.Add(shotgun.gameObject);
-
         currentWeaponIndex = unlockedWeapons.Count - 1;
         ActiveWeapon(shotgun.gameObject);
     }
 
     public void UnlockSniper()
     {
-        if (unlockedWeapons.Contains(sniper.gameObject))
+        if (unlockedWeapons.Contains(railgun.gameObject))
             return;
 
-        unlockedWeapons.Add(sniper.gameObject);
-
+        unlockedWeapons.Add(railgun.gameObject);
         currentWeaponIndex = unlockedWeapons.Count - 1;
-        ActiveWeapon(sniper.gameObject);
+        ActiveWeapon(railgun.gameObject);
     }
 }

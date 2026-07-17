@@ -94,11 +94,8 @@ public class Pistol : MonoBehaviour, IGun
     private void Fire()
     {
         GameObject pistolBullet = Instantiate(bullet, bulletOrigin.position, bulletOrigin.rotation);
-
         pistolBullet.transform.localScale *= bulletSizeMultiplier;
-
         PistolBullet PistolBullet = pistolBullet.GetComponent<PistolBullet>();
-
         PistolBullet.speed = bulletSpeed;
         PistolBullet.damage = bulletDamage;
     }

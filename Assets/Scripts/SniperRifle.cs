@@ -56,9 +56,8 @@ public class SniperRifle : MonoBehaviour, IGun
 
     private void Fire()
     {
-        Instantiate(bullet, bulletOrigin.position, bulletOrigin.rotation);
-
-        bullet.transform.localScale *= bulletSizeMultiplier;
+        GameObject sniperBullet = Instantiate(bullet,bulletOrigin.position,bulletOrigin.rotation);
+        sniperBullet.transform.localScale *= bulletSizeMultiplier;
     }
 
     public void TryFire(InputAction.CallbackContext context)

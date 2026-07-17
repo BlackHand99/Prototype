@@ -13,21 +13,20 @@ public class UpgradeMenu : MonoBehaviour
         weaponManager = manager;
         player = manager.GetComponent<PlayerController>();
         playerHealth = manager.GetComponent<Health>();
-
         gameObject.SetActive(true);
         Time.timeScale = 0f;
     }
 
     public void HeavyBarkUpgrade()
     {
-        weaponManager.pistol.HeavyBarkUpgrade();
+        weaponManager.flicker.HeavyBarkUpgrade();
         weaponManager.UnlockPistol();
         Close();
     }
 
     public void LightBarkUpgrade()
     {
-        weaponManager.pistol.LightBarkUpgrade();
+        weaponManager.flicker.LightBarkUpgrade();
         weaponManager.UnlockPistol();
         Close();
     }
@@ -41,7 +40,7 @@ public class UpgradeMenu : MonoBehaviour
 
     public void Cannonball()
     {
-        weaponManager.pistol.CannonballUpgrade();
+        weaponManager.flicker.CannonballUpgrade();
         weaponManager.UnlockShotgun();
         Close();
     }
@@ -62,7 +61,7 @@ public class UpgradeMenu : MonoBehaviour
 
     public void Railgun()
     {
-        weaponManager.sniper.RailgunUpgrade();
+        weaponManager.railgun.RailgunUpgrade();
         weaponManager.UnlockSniper();
         Close();
     }
@@ -76,7 +75,7 @@ public class UpgradeMenu : MonoBehaviour
 
     public void Minigun()
     {
-        weaponManager.pistol.MinigunUpgrade();
+        weaponManager.flicker.MinigunUpgrade();
         weaponManager.UnlockSniper();
         Close();
     }

@@ -4,6 +4,7 @@ public class Health : MonoBehaviour
 {
     [SerializeField] private float maxHealth = 3;
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private DeathUi deathUI;
 
     public float CurrentHealth { get; private set; }
 
@@ -41,7 +42,7 @@ public class Health : MonoBehaviour
         if (CurrentHealth <= 0)
         {
             isDead = true;
-            Destroy(gameObject);
+            deathUI.DeathPanel();
         }
     }
 

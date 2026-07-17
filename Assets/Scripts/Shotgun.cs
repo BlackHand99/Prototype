@@ -78,10 +78,8 @@ public class Shotgun : MonoBehaviour, IGun
         {
             GameObject myBullet =  Instantiate(bullet, bulletOrigin.position, bulletOrigin.rotation);
             myBullet.transform.right = fireDirections[i];
-
             ShotgunPellets pellets = myBullet.GetComponent<ShotgunPellets>();
             pellets.bulletTime = bulletTime;
-
             if (shotgunJumpEnabled)
             {
                 Vector2 recoil = -bulletOrigin.right * jumpForce;
@@ -119,7 +117,6 @@ public class Shotgun : MonoBehaviour, IGun
 
             directions[i] = rotatedDir.normalized;
         }
-
         return directions;
     }
     public void TryFire(InputAction.CallbackContext context)
