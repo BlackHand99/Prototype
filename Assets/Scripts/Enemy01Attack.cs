@@ -4,15 +4,34 @@ using UnityEngine;
 public class Enemy01Attack : MonoBehaviour
 {
     [SerializeField] private float attackCooldown;
+
     [SerializeField] private float range;
-    [SerializeField] private float colliderDistance;
+
+    [SerializeField]
+    private Vector2 attackBoxSize =
+        new Vector2(3f, 1.5f);
+
     [SerializeField] private int damage;
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private BoxCollider2D boxCollider;
+    [SerializeField] private Rigidbody2D rb;
 
-    private Health playerHealth;
+    //lunging attack stuff
+    [SerializeField] private float windupDelay = 1.0f;
+    [SerializeField] private float lungeForce = 12f;
+    [SerializeField] private float lungeDuration = 0.2f;
+    [SerializeField] private float recoveryTime = 1f;
+    [SerializeField] private float knockbackForce;
+    private bool attacking;
+    private bool hasHitPlayer;
+    private bool lunging;
+    public float attackRange => range;
+    public bool IsAttacking => attacking;
+
+    public bool CanAttack => !attacking;
+    public bool IsLunging => lunging;
+
     private Animator anim;
-    private Chase chase;
 
     public bool isCooldownActive;
 
@@ -21,46 +40,143 @@ public class Enemy01Attack : MonoBehaviour
         anim = GetComponent<Animator>();
         isCooldownActive = true;
     }
-
-    public IEnumerator CooldownTimer()
+    public IEnumerator LungeAttack(Vector2 playerPos)
     {
-        isCooldownActive = false;
-        yield return new WaitForSeconds(attackCooldown);
-        isCooldownActive = true;
+        if (attacking)
+            yield break;
+
+        attacking = true;
+
+        // stop current movement
+        rb.linearVelocity = Vector2.zero;
+
+        //switch to windup animation
+        anim.Play("meleeAttack");
+
+        // optional windup delay
+        yield return new WaitForSeconds(windupDelay);
+
+        float dir =
+            Mathf.Sign(playerPos.x - transform.position.x);
+
+        lunging = true;
+        hasHitPlayer = false;
+
+        rb.linearVelocity = new Vector2(
+            dir * lungeForce,
+            rb.linearVelocity.y
+        );
+
+        float timer = 0f;
+
+        while (timer < lungeDuration)
+        {
+            Collider2D hit = Physics2D.OverlapBox(
+                transform.position,
+                attackBoxSize,
+                0,
+                playerLayer
+            );
+
+            if (hit != null && !hasHitPlayer)
+            {
+                Health playerHealth = hit.GetComponentInParent<Health>();
+
+                if (playerHealth != null)
+                {
+                    Vector2 knockbackDir =
+                        (hit.transform.position - transform.position).normalized;
+
+                    knockbackDir = new Vector2(
+                        knockbackDir.x,
+                        knockbackForce
+                    ).normalized;
+
+                    playerHealth.TakeDamage(
+                        damage,
+                        knockbackDir,
+                        knockbackForce
+                    );
+
+                    if (hit != null)
+                    {
+                        Debug.Log("Lunge hit: " + hit.name);
+                    }
+
+                    hasHitPlayer = true;
+                }
+            }
+
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+
+        // stop lunge
+        rb.linearVelocity = new Vector2(
+            0,
+            rb.linearVelocity.y
+        );
+
+        yield return new WaitForSeconds(recoveryTime);
+
+        lunging = false;
+
+        attacking = false;
+
     }
 
     public bool PlayerInRange()
     {
-        RaycastHit2D hit = Physics2D.BoxCast(boxCollider.bounds.center + transform.right * range * transform.localScale.x * colliderDistance,
-            new Vector3(boxCollider.bounds.size.x, boxCollider.bounds.size.y, boxCollider.bounds.size.z), 0, Vector2.left, 0, playerLayer);
+        Vector2 direction =
+            transform.localScale.x > 0
+            ? Vector2.right
+            : Vector2.left;
 
-        if (hit.collider != null)
-            playerHealth = hit.collider.GetComponent<Health>();
+        Vector2 center =
+            (Vector2)transform.position +
+            direction * range;
 
+        Collider2D hit = Physics2D.OverlapBox(
+            center,
+            attackBoxSize,
+            0,
+            playerLayer
+        );
 
-        return hit.collider != null;
-    }
-
-    void Update()
-    {
-        DamagePlayer();
+        return hit != null;
     }
 
     private void OnDrawGizmos()
     {
-        var boxCollider = GetComponent<BoxCollider2D>();
+        Vector2 direction =
+    transform.localScale.x > 0
+    ? Vector2.right
+    : Vector2.left;
+
+        Vector2 center =
+            (Vector2)transform.position +
+            direction * range;
 
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(boxCollider.bounds.center + transform.right * range * transform.localScale.x * colliderDistance, new Vector3(boxCollider.bounds.size.x, boxCollider.bounds.size.y, boxCollider.bounds.size.z));
-    }
 
-    public void DamagePlayer()
+        Gizmos.DrawWireCube(
+            center,
+            attackBoxSize
+        );
+    }
+    private void Update()
     {
-        if (PlayerInRange() && isCooldownActive)
+        Collider2D hit =
+            Physics2D.OverlapCircle(
+                transform.position,
+                2f,
+                playerLayer
+            );
+
+        if (hit != null)
         {
-            anim.Play("meleeAttack");
-            playerHealth.TakeDamage(damage);
-            StartCoroutine(CooldownTimer());
+            Debug.Log("Player found");
         }
     }
 }

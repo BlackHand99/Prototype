@@ -219,12 +219,12 @@ MonoBehaviour:
   throwPoint: {fileID: 7039308323538007386}
   throwForce: 8
   attackCooldown: 2
-  rangeW: 5.95
-  rangeH: 34.4
+  rangeW: 5
+  rangeH: 4
   playerLayer:
     serializedVersion: 2
     m_Bits: 1024
-  boxOffset: {x: 2.47, y: -1.06}
+  boxOffset: {x: 2.5, y: -3.5}
   isCooldownActive: 0
 --- !u!114 &4871296687726302631
 MonoBehaviour:
@@ -243,7 +243,7 @@ MonoBehaviour:
   yVelocity: 0.3
   stiffness: 20
   damping: 10
-  flyHeight: 6.15
+  flyHeight: 6
   attackRange: 2
 --- !u!114 &7044687161621606490
 MonoBehaviour:

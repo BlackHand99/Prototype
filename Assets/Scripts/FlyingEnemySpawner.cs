@@ -7,6 +7,7 @@ public class FlyingEnemySpawner : EnemySpawner
     [SerializeField] private float lineYOffset = -6f;
     [SerializeField] private float lineXOffset = 2f;
 
+    public bool SpawnerEnabled;
     protected override void SpawnEnemy()
     {
         if (enemyPrefabs.Length == 0)
@@ -53,4 +54,5 @@ public class FlyingEnemySpawner : EnemySpawner
 
         Gizmos.DrawLine(left, right);
     }
+
 }

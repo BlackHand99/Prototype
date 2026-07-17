@@ -3,35 +3,41 @@ using System.Collections;
 
 public abstract class EnemySpawner : MonoBehaviour
 {
-    [Header("Spawn Settings")]
     [SerializeField] protected GameObject[] enemyPrefabs;
     [SerializeField] protected float spawnInterval = 3f;
 
-    protected bool spawnActive;
+    private bool spawnActive;
+    private bool spawnerEnabled;
 
-    protected virtual void Awake()
+    public void EnableSpawner()
     {
-        StartCoroutine(SpawnTimer());
-    }
-
-    protected virtual IEnumerator SpawnTimer()
-    {
-        spawnActive = false;
-
-        yield return new WaitForSeconds(spawnInterval);
-
-        spawnActive = true;
-    }
-
-    protected virtual void Update()
-    {
-        if (!spawnActive)
+        if (spawnerEnabled)
             return;
 
-        SpawnEnemy();
-
+        spawnerEnabled = true;
         StartCoroutine(SpawnTimer());
+    }
+
+    public void DisableSpawner()
+    {
+        spawnerEnabled = false;
+        StopAllCoroutines();
+    }
+
+    private IEnumerator SpawnTimer()
+    {
+        while (spawnerEnabled)
+        {
+            spawnActive = false;
+
+            yield return new WaitForSeconds(spawnInterval);
+
+            spawnActive = true;
+
+            SpawnEnemy();
+        }
     }
 
     protected abstract void SpawnEnemy();
 }
+

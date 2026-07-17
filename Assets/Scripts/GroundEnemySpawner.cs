@@ -4,6 +4,7 @@ public class GroundEnemySpawner : EnemySpawner
 {
     [SerializeField] private Transform[] spawnPoints;
 
+    public bool SpawnerEnabled;
     protected override void SpawnEnemy()
     {
         if (enemyPrefabs.Length == 0 || spawnPoints.Length == 0)
@@ -18,4 +19,22 @@ public class GroundEnemySpawner : EnemySpawner
             spawnPoints[spawnIndex].rotation
         );
     }
+
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        if (spawnPoints == null)
+            return;
+
+        Gizmos.color = Color.green;
+
+        foreach (Transform point in spawnPoints)
+        {
+            if (point == null)
+                continue;
+
+            Gizmos.DrawSphere(point.position, 0.2f);
+        }
+    }
+#endif
 }

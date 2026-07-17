@@ -2,15 +2,21 @@ using UnityEngine;
 
 public class RoomDirector : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private EnemySpawner[] spawners;
+    [SerializeField] private int enemiesToSpawn = 25;
+    public void ActivateRoom()
     {
-        
+        foreach (EnemySpawner spawner in spawners)
+        {
+            spawner.EnableSpawner();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void DeactivateRoom()
     {
-        
+        foreach (EnemySpawner spawner in spawners)
+        {
+            spawner.DisableSpawner();
+        }
     }
 }

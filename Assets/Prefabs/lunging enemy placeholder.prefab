@@ -231,7 +231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7968d8f05ee06d48ab7b2000de760f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyContDamage
-  damage: 2
+  damage: 1
   knockbackForce: 8
 --- !u!114 &7488978922398622928
 MonoBehaviour:
@@ -245,7 +245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8336341c7e0bb5e45a1b851482e00335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyPatrol
-  detectionSizeOffset: 10.12
+  detectionSizeOffset: 10
   detectionSize: 19
   detectInterval: 0.25
   colliderDistance: 1.05
@@ -299,7 +299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   attackCooldown: 1
-  range: 2.69
+  range: 2.7
   attackBoxSize: {x: 3, y: 1.5}
   damage: 3
   playerLayer:

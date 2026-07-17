@@ -9,7 +9,6 @@ public class HealthUI : MonoBehaviour
     [SerializeField] private Sprite hp3;
     [SerializeField] private Sprite hp2;
     [SerializeField] private Sprite hp1;
-    [SerializeField] private Sprite hp0;
 
     private void Update()
     {
@@ -25,10 +24,6 @@ public class HealthUI : MonoBehaviour
 
             case 1:
                 healthImage.sprite = hp1;
-                break;
-
-            default:
-                healthImage.sprite = hp0;
                 break;
         }
     }

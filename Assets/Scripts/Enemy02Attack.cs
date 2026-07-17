@@ -57,10 +57,7 @@ public class Enemy02Attack : MonoBehaviour
 
         Rigidbody2D rb = bomb.GetComponent<Rigidbody2D>();
 
-        Vector2 targetPos = GameManagerSingleton.Instance.GetPlayerPosition();
-
-        Vector2 direction =
-            (targetPos - (Vector2)throwPoint.position).normalized;
+        Vector2 direction = (GameManagerSingleton.Instance.GetPlayerPosition() - throwPoint.position).normalized;
 
         rb.linearVelocity = direction * throwForce;
     }
