@@ -7,6 +7,8 @@ public class PauseMenu : MonoBehaviour
     [Header("Panels")]
     [SerializeField] private GameObject pauseMenuPanel;
     [SerializeField] private GameObject controlsPanel;
+    [SerializeField] private GameObject quitConfirmPanel;
+    [SerializeField] private string mainMenuScene = "MainMenu";
 
     private bool paused;
 
@@ -16,6 +18,7 @@ public class PauseMenu : MonoBehaviour
 
         pauseMenuPanel.SetActive(false);
         controlsPanel.SetActive(false);
+        quitConfirmPanel.SetActive(false);
     }
 
     private void Update()
@@ -23,22 +26,34 @@ public class PauseMenu : MonoBehaviour
         if (Keyboard.current == null)
             return;
 
-        if (Keyboard.current.escapeKey.wasPressedThisFrame)
-        {
-            if (controlsPanel.activeSelf)
-            {
-                CloseControls();
-                return;
-            }
+        if (!Keyboard.current.escapeKey.wasPressedThisFrame)
+            return;
 
-            if (paused)
-            {
-                Resume();
-            }
-            else
-            {
-                Pause();
-            }
+        // Playing
+        if (!paused)
+        {
+            Pause();
+            return;
+        }
+
+        // Controls -> Pause
+        if (controlsPanel.activeSelf)
+        {
+            CloseControls();
+            return;
+        }
+
+        // Pause -> Quit Confirmation
+        if (pauseMenuPanel.activeSelf)
+        {
+            OpenQuitConfirmation();
+            return;
+        }
+
+        // Quit Confirmation -> Pause
+        if (quitConfirmPanel.activeSelf)
+        {
+            CloseQuitConfirmation();
         }
     }
 
@@ -58,6 +73,7 @@ public class PauseMenu : MonoBehaviour
 
         pauseMenuPanel.SetActive(false);
         controlsPanel.SetActive(false);
+        quitConfirmPanel.SetActive(false);
 
         Time.timeScale = 1f;
     }
@@ -71,6 +87,35 @@ public class PauseMenu : MonoBehaviour
     public void CloseControls()
     {
         controlsPanel.SetActive(false);
+        pauseMenuPanel.SetActive(true);
+    }
+
+    public void OpenQuitConfirmation()
+    {
+        pauseMenuPanel.SetActive(false);
+        quitConfirmPanel.SetActive(true);
+    }
+
+    public void CloseQuitConfirmation()
+    {
+        quitConfirmPanel.SetActive(false);
+        pauseMenuPanel.SetActive(true);
+    }
+    public void QuitToMainMenu()
+    {
+        paused = false;
+
+        Time.timeScale = 1f;
+
+        pauseMenuPanel.SetActive(false);
+        controlsPanel.SetActive(false);
+        quitConfirmPanel.SetActive(false);
+
+        SceneManager.LoadScene(mainMenuScene);
+    }
+    public void ReturnToPauseMenu()
+    {
+        quitConfirmPanel.SetActive(false);
         pauseMenuPanel.SetActive(true);
     }
 }
