@@ -10,8 +10,6 @@ public class Shotgun : MonoBehaviour, IGun
 
     [SerializeField] private Transform bulletOrigin;
 
-    private GameObject bulletInstantiate;
-
     private bool isShooting;
     private bool isMouseDown;
 
@@ -26,8 +24,6 @@ public class Shotgun : MonoBehaviour, IGun
     [SerializeField] private float bulletTime = 0.5f;
 
     private Coroutine fireRoutine;
-
-    [SerializeField] private float jumpForce = 10f;
 
     private void OnDisable()
     {

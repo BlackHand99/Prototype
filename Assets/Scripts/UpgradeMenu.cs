@@ -8,8 +8,13 @@ public class UpgradeMenu : MonoBehaviour
 
     private Health playerHealth;
 
+    private bool hasOpenedMenu = false;
+
     public void Open(WeaponManager manager)
     {
+        if (hasOpenedMenu)
+            return;
+        hasOpenedMenu = true;
         weaponManager = manager;
         player = manager.GetComponent<PlayerController>();
         playerHealth = manager.GetComponent<Health>();
