@@ -33,8 +33,6 @@ public class Pistol : MonoBehaviour, IGun
 
     [SerializeField] public float fireRate = 120f;
 
-    [SerializeField] public float fireRateUpgrade = 60f;
-
     private Coroutine fireRoutine;
 
     public void HeavyBarkUpgrade()
@@ -45,7 +43,7 @@ public class Pistol : MonoBehaviour, IGun
 
     public void LightBarkUpgrade()
     {
-        fireRate *= 2.5f;
+        fireRate *= 2f;
         bulletDamage *= 0.6f;
     }
 

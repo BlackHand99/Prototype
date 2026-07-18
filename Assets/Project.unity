@@ -703,7 +703,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FlyingEnemySpawner
   enemyPrefabs:
-  - {fileID: 4771364953505614886, guid: 98c1f1a8d8719684ca65f8b7f7ae24cf, type: 3}
+  - {fileID: 1589087456698886778, guid: c3402302fc8861e458693d5c0d48610a, type: 3}
   spawnInterval: 4.5
   roomDirector: {fileID: 1122765958}
   lineWidth: 31.94
@@ -2877,11 +2877,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FlyingEnemySpawner
   enemyPrefabs:
-  - {fileID: 4771364953505614886, guid: 98c1f1a8d8719684ca65f8b7f7ae24cf, type: 3}
-  spawnInterval: 6
+  - {fileID: 1589087456698886778, guid: c3402302fc8861e458693d5c0d48610a, type: 3}
+  spawnInterval: 4
   roomDirector: {fileID: 1273544359}
   lineWidth: 33.2
-  lineYOffset: 9.76
+  lineYOffset: 13.67
   lineXOffset: 8.93
 --- !u!1 &323007270
 GameObject:
@@ -3632,9 +3632,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GroundEnemySpawner
   enemyPrefabs:
-  - {fileID: 1622229654436607152, guid: 9cf80fa7ad1952341830c0574dfb7bce, type: 3}
-  - {fileID: 4493451492308323, guid: 58db008feaf3289418fd5b1b4b588555, type: 3}
-  spawnInterval: 4.5
+  - {fileID: 5446807041866122065, guid: 6e20cf960f6888a4fbc7d978b32dadab, type: 3}
+  - {fileID: 3419385472874363285, guid: 901944e46fc6dca4e99cd76061b0e190, type: 3}
+  spawnInterval: 3.5
   roomDirector: {fileID: 1122765958}
   spawnPoints:
   - {fileID: 2113702336}
@@ -5565,6 +5565,84 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 8.713848, y: 1.97}
   m_EdgeRadius: 0
+--- !u!1 &647416522
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 647416524}
+  - component: {fileID: 647416523}
+  m_Layer: 7
+  m_Name: Gauntlet3GroundBeakCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!61 &647416523
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 647416522}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 1536
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 11.568031, y: -12.505373}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 48.516006, y: 3.242363}
+  m_EdgeRadius: 0
+--- !u!4 &647416524
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 647416522}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 154.2524, y: 4.74081, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &649644725
 GameObject:
   m_ObjectHideFlags: 0
@@ -5621,7 +5699,6 @@ MonoBehaviour:
   bulletSpeed: 25
   bulletDamage: 1
   fireRate: 180
-  fireRateUpgrade: 60
 --- !u!212 &649644728
 SpriteRenderer:
   serializedVersion: 2
@@ -6434,11 +6511,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1430622581}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 438, y: -290.8}
-  m_SizeDelta: {x: 362.0279, y: 162.5092}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 100, y: -75}
+  m_SizeDelta: {x: 362.0279, y: 162.50922}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &750243034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6482,7 +6559,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0.21069191, g: 0.6320754, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -6499,13 +6576,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 49.7
-  m_fontSizeBase: 49.7
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 3
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -7480,6 +7557,84 @@ Transform:
   - {fileID: 1509101356}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &855682336
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 855682338}
+  - component: {fileID: 855682337}
+  m_Layer: 0
+  m_Name: Gauntlet3Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!61 &855682337
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 855682336}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 1024
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 3.6918182, y: 3.265978}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 11.666138, y: 7.531957}
+  m_EdgeRadius: 0
+--- !u!4 &855682338
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 855682336}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 161.12555, y: -7.86911, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &863913243
 GameObject:
   m_ObjectHideFlags: 0
@@ -7525,8 +7680,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FlyingEnemySpawner
   enemyPrefabs:
-  - {fileID: 4771364953505614886, guid: 98c1f1a8d8719684ca65f8b7f7ae24cf, type: 3}
-  spawnInterval: 3.5
+  - {fileID: 1589087456698886778, guid: c3402302fc8861e458693d5c0d48610a, type: 3}
+  spawnInterval: 3
   roomDirector: {fileID: 1568098562}
   lineWidth: 31.94
   lineYOffset: 10.16
@@ -8323,7 +8478,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 159.5, y: 0}
+  m_Offset: {x: 159.5, y: 0.48615265}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -8333,7 +8488,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 52, y: 3}
+  m_Size: {x: 52, y: 3.2082033}
   m_EdgeRadius: 0
 --- !u!4 &926709630
 Transform:
@@ -8550,7 +8705,7 @@ Transform:
   m_GameObject: {fileID: 967322588}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -72.68, y: -3.46, z: -10}
+  m_LocalPosition: {x: -198.6, y: -3.46, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8727,7 +8882,7 @@ Transform:
   m_GameObject: {fileID: 982263550}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -72.68001, y: 4.7041693, z: -10}
+  m_LocalPosition: {x: -186.48592, y: 4.7041693, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11269,7 +11424,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hazards
   damage: 1
-  knockbackForce: 13
+  knockbackForce: 35
 --- !u!61 &1217537428
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15572,10 +15727,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GroundEnemySpawner
   enemyPrefabs:
-  - {fileID: 1622229654436607152, guid: 9cf80fa7ad1952341830c0574dfb7bce, type: 3}
-  - {fileID: 3277889652112553529, guid: 8236c851d41dcc64594499c7ed64e832, type: 3}
-  - {fileID: 4493451492308323, guid: 58db008feaf3289418fd5b1b4b588555, type: 3}
-  spawnInterval: 3.5
+  - {fileID: 3419385472874363285, guid: 901944e46fc6dca4e99cd76061b0e190, type: 3}
+  - {fileID: 2320664401983012652, guid: 2ab6e91954a255549a6e183adb88b33e, type: 3}
+  - {fileID: 5446807041866122065, guid: 6e20cf960f6888a4fbc7d978b32dadab, type: 3}
+  spawnInterval: 3
   roomDirector: {fileID: 1568098562}
   spawnPoints:
   - {fileID: 592310736}
@@ -16286,7 +16441,7 @@ MonoBehaviour:
   dashSpeed: 40
   dashDuration: 0.2
   dashCooldown: 1.5
-  jumpForce: 15
+  jumpForce: 20
   groundCheckVerticalOffset: 0
   groundLayerMask:
     serializedVersion: 2
@@ -16427,7 +16582,7 @@ Transform:
   m_GameObject: {fileID: 1743171415}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -72.68, y: -3.46, z: 0}
+  m_LocalPosition: {x: -198.6, y: -3.46, z: 0}
   m_LocalScale: {x: 0.75, y: 0.75, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -18957,7 +19112,7 @@ BoxCollider2D:
   m_UsedByEffector: 1
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 15, y: 0}
+  m_Offset: {x: 15, y: -2}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -19718,8 +19873,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GroundEnemySpawner
   enemyPrefabs:
-  - {fileID: 1622229654436607152, guid: 9cf80fa7ad1952341830c0574dfb7bce, type: 3}
-  spawnInterval: 6
+  - {fileID: 5446807041866122065, guid: 6e20cf960f6888a4fbc7d978b32dadab, type: 3}
+  spawnInterval: 4
   roomDirector: {fileID: 1273544359}
   spawnPoints:
   - {fileID: 1890957499}
@@ -20384,3 +20539,5 @@ SceneRoots:
   - {fileID: 48039602}
   - {fileID: 1203913350}
   - {fileID: 1850079100}
+  - {fileID: 855682338}
+  - {fileID: 647416524}

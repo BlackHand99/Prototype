@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3084608913983294483}
   - component: {fileID: 2961101469770272928}
   - component: {fileID: 9133663898641435635}
-  m_Layer: 8
+  m_Layer: 14
   m_Name: SniperBullet 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_MaskInteraction: 0
   m_Sprite: {fileID: 2208703988740019828, guid: b48c33d2727d6d94d9812ce337a13f35, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -110,7 +110,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8192
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -173,5 +173,5 @@ MonoBehaviour:
   speed: 35
   structureBulletDestroy:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 128
   damage: 10

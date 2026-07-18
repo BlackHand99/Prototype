@@ -3,6 +3,7 @@ using UnityEngine;
 public class ChaseFlying : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
+    [SerializeField] private float enemyScale = 0.01f;
 
     [SerializeField] private float yVelocity;
     [SerializeField] private float stiffness = 10f;
@@ -59,9 +60,9 @@ public class ChaseFlying : MonoBehaviour
         if (Mathf.Abs(xDiff) > 0.01f)
         {
             transform.localScale = new Vector3(
-                Mathf.Sign(xDiff),
-                1,
-                1
+            Mathf.Sign(xDiff) * enemyScale,
+            enemyScale,
+            enemyScale
             );
         }
     }

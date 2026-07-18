@@ -8,6 +8,9 @@ public class Bomb : MonoBehaviour
     [SerializeField] int damage;
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private float knockbackForce;
+    [Header("Explosion")]
+    [SerializeField] private GameObject bombExplosionPrefab;
+    private bool hasExploded;
 
     private Health playerHealth;
 
@@ -16,7 +19,7 @@ public class Bomb : MonoBehaviour
     { 
         fuzeTime -= Time.deltaTime;
 
-        if (fuzeTime <= 0)
+        if (fuzeTime <= 0f && !hasExploded)
         {
             Exploded();
         }
@@ -24,6 +27,21 @@ public class Bomb : MonoBehaviour
 
     private bool Exploded()
     {
+        hasExploded = true;
+
+        if (bombExplosionPrefab != null)
+        {
+            Instantiate(
+                bombExplosionPrefab,
+                transform.position,
+                Quaternion.identity
+            );
+        }
+        else
+        {
+            Debug.LogError("Explosion Prefab is not assigned!");
+        }
+
         RaycastHit2D hit = Physics2D.CircleCast(transform.position, 10f * explosionRadius, Vector2.up, 0, playerLayer);
 
         if (hit.collider != null)
@@ -43,7 +61,6 @@ public class Bomb : MonoBehaviour
                 );
             }
         }
-
         Destroy(gameObject);
 
         return hit.collider != null;
