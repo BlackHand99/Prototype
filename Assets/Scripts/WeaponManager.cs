@@ -6,13 +6,9 @@ public class WeaponManager : MonoBehaviour
 {
 
     [field:SerializeField] public Pistol flicker { get; private set; }
-    [field:SerializeField] public PistolBullet pistolBullet {  get; private set; }
     [field: SerializeField] public Shotgun shotgun { get; private set; }
-
     [field: SerializeField] public SniperRifle railgun { get; private set; }
-
     private IGun currentGun;
-
     private List<GameObject> unlockedWeapons = new();
     private int currentWeaponIndex = 0;
     private GameObject nextWeapon;
