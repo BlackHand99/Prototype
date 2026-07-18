@@ -5459,7 +5459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hazards
   damage: 1
-  knockbackForce: 13
+  knockbackForce: 35
 --- !u!212 &626373574
 SpriteRenderer:
   serializedVersion: 2
