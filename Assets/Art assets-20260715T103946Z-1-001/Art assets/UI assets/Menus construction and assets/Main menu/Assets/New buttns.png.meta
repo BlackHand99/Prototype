@@ -114,7 +114,7 @@ TextureImporter:
         width: 1112
         height: 444
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -133,10 +133,10 @@ TextureImporter:
         serializedVersion: 2
         x: 34
         y: 220
-        width: 982
-        height: 291
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 1021
+        height: 314
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -153,12 +153,12 @@ TextureImporter:
       name: New buttns_2
       rect:
         serializedVersion: 2
-        x: 371
+        x: 373
         y: 12
         width: 549
         height: 250
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -175,7 +175,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 046f6699acc78124ab2a5a5de9a3b65a
     internalID: 0
     vertices: []
     indices: 
