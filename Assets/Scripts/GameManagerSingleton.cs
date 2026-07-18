@@ -11,6 +11,8 @@ public class GameManagerSingleton : MonoBehaviour
 
     public float PerformanceScore;
     public int ConsecutiveNoHitRooms;
+    private Transform playerTransform;
+    private Vector3 playerPosition;
     private void Awake()
     {
         //prevent duplicate 
@@ -26,8 +28,6 @@ public class GameManagerSingleton : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    private Vector3 playerPosition;
-
     public event Action<Vector3> OnPlayerPositionChanged;
 
     public void SetPlayerPosition(Vector3 pos)
@@ -37,19 +37,14 @@ public class GameManagerSingleton : MonoBehaviour
     }
 
     public Vector3 GetPlayerPosition() => playerPosition;
-
-
-    //enemy global aggro
-    public bool GlobalAlert { get; private set; }
-
-    public void TriggerGlobalAlert()
+    public void SetPlayer(Transform player)
     {
-        GlobalAlert = true;
+        playerTransform = player;
     }
 
-    public void ResetGlobalAlert()
+    public Transform GetPlayer()
     {
-        GlobalAlert = false;
+        return playerTransform;
     }
 }
 

@@ -14,7 +14,7 @@ public class Enemy02Attack : MonoBehaviour
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private Vector2 boxOffset = new Vector2(1f, -0.5f);
 
-    private float cooldownTimer;
+    private Transform player;
     public bool isCooldownActive;
 
     private void Awake()
@@ -22,54 +22,81 @@ public class Enemy02Attack : MonoBehaviour
         isCooldownActive = true;
     }
 
-    public IEnumerator CooldownTimer()
+    private void Start()
+    {
+        player = GameManagerSingleton.Instance.GetPlayer();
+    }
+
+    private IEnumerator AttackCooldown()
     {
         isCooldownActive = false;
+
         yield return new WaitForSeconds(attackCooldown);
+
         isCooldownActive = true;
     }
 
-    void Update()
+    private void Update()
     {
-        if (GameManagerSingleton.Instance == null) return;
+        if (player == null)
+            return;
 
         if (PlayerInRange() && isCooldownActive)
         {
             ThrowBomb();
-            StartCoroutine(CooldownTimer());
+            StartCoroutine(AttackCooldown());
         }
     }
 
-    bool PlayerInRange()
+    private bool PlayerInRange()
     {
-        Vector2 boxCenter = (Vector2)transform.position + Vector2.right * transform.localScale.x * boxOffset.x + Vector2.up * boxOffset.y;
+        Vector2 boxCenter =
+            (Vector2)transform.position +
+            Vector2.right * transform.localScale.x * boxOffset.x +
+            Vector2.up * boxOffset.y;
 
-        Vector2 boxSize = new Vector2(rangeW, rangeH); // width, height of attack range
+        Vector2 boxSize = new Vector2(rangeW, rangeH);
 
-        Collider2D hit = Physics2D.OverlapBox(boxCenter, boxSize, 0f, playerLayer);
+        Collider2D hit = Physics2D.OverlapBox(
+            boxCenter,
+            boxSize,
+            0f,
+            playerLayer
+        );
 
         return hit != null;
     }
 
-    void ThrowBomb()
+    private void ThrowBomb()
     {
-        GameObject bomb = Instantiate(bombPrefab, throwPoint.position, Quaternion.identity);
+        GameObject bomb = Instantiate(
+            bombPrefab,
+            throwPoint.position,
+            Quaternion.identity
+        );
 
-        Rigidbody2D rb = bomb.GetComponent<Rigidbody2D>();
+        Rigidbody2D bombRb = bomb.GetComponent<Rigidbody2D>();
 
-        Vector2 direction = (GameManagerSingleton.Instance.GetPlayerPosition() - throwPoint.position).normalized;
+        if (bombRb == null)
+            return;
 
-        rb.linearVelocity = direction * throwForce;
+        Vector2 direction =
+            ((Vector2)player.position - (Vector2)throwPoint.position).normalized;
+
+        bombRb.linearVelocity = direction * throwForce;
     }
 
-    void OnDrawGizmosSelected()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
 
-        Vector2 boxCenter = (Vector2)transform.position + Vector2.right * transform.localScale.x * boxOffset.x + Vector2.up * boxOffset.y;
+        Vector2 boxCenter =
+            (Vector2)transform.position +
+            Vector2.right * transform.localScale.x * boxOffset.x +
+            Vector2.up * boxOffset.y;
+
         Vector2 boxSize = new Vector2(rangeW, rangeH);
 
         Gizmos.DrawWireCube(boxCenter, boxSize);
     }
-
 }

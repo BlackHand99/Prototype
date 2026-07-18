@@ -15,6 +15,11 @@ public class BeakProjectile : MonoBehaviour
         moveDirection = direction.normalized;
     }
 
+    private void Start()
+    {
+        Destroy(gameObject, lifetime);
+    }
+
     private void Update()
     {
         transform.position +=
@@ -23,31 +28,25 @@ public class BeakProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("Beak hit: " + other.name);
 
-        if ((wallLayer.value &
-            (1 << other.gameObject.layer)) != 0)
+        // Destroy on walls
+        if ((wallLayer.value & (1 << other.gameObject.layer)) != 0)
         {
             Destroy(gameObject);
             return;
         }
 
-        if (other.TryGetComponent<Health>(out var player))
+        // Damage player
+        if (other.TryGetComponent(out Health player))
         {
-            Vector2 knockbackDir =
-                (transform.position - transform.position).normalized;
-
-            knockbackDir = new Vector2(knockbackDir.x, knockbackForce).normalized;
-
             player.TakeDamage(
                 damage,
-                knockbackDir,
+                moveDirection,
                 knockbackForce
             );
-        }
-    }
 
-    private void Start()
-    {
-        Destroy(gameObject, lifetime);
+            Destroy(gameObject);
+        }
     }
 }

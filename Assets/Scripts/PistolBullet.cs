@@ -3,31 +3,50 @@ using UnityEngine;
 public class PistolBullet : MonoBehaviour
 {
     private Rigidbody2D myRigidBody2D;
+
     public float speed;
-    [SerializeField] private LayerMask bulletDestroy;
     public float damage;
-    [SerializeField] private float bulletSize = 1f;
+
+    [SerializeField] private LayerMask bulletDestroy;
+
 
     private void Start()
     {
         myRigidBody2D = GetComponent<Rigidbody2D>();
+
         BulletVelocity();
     }
 
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if((bulletDestroy.value & (1 << collision.gameObject.layer)) > 0)
+        // Shield gets priority
+        if (collision.GetComponent<ShieldBlocker>() != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        EnemyHealth enemy =
+            collision.GetComponentInParent<EnemyHealth>();
+
+        if (enemy != null)
+        {
+            enemy.TakeDamage(damage);
+            Destroy(gameObject);
+            return;
+        }
+
+        if ((bulletDestroy.value & (1 << collision.gameObject.layer)) != 0)
         {
             Destroy(gameObject);
         }
-        if (collision.gameObject.TryGetComponent(out DamageEnemy health))
-        {
-            health.TakeDamage(damage);
-        }
     }
+
 
     private void BulletVelocity()
     {
-        myRigidBody2D.linearVelocity = transform.right * speed;
+        myRigidBody2D.linearVelocity =
+            transform.right * speed;
     }
 }

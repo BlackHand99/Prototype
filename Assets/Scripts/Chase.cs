@@ -4,68 +4,84 @@ public class Chase : MonoBehaviour
 {
     [Header("Movement")]
     [SerializeField] private float chaseSpeed = 4f;
-
     [SerializeField] private Rigidbody2D rb;
 
-    private Vector3 initScale;
-
     private Enemy01Attack attack;
-    private bool IsChasing =>
-        GameManagerSingleton.Instance.GlobalAlert;
+    private Transform player;
+
+    public float FacingDirection { get; private set; } = 1f;
+
 
     private void Awake()
     {
-        initScale = transform.localScale;
         attack = GetComponent<Enemy01Attack>();
     }
 
-    private void Update()
+
+    private void Start()
     {
-        if (!IsChasing)
+        player = GameManagerSingleton.Instance.GetPlayer();
+    }
+
+
+    private void FixedUpdate()
+    {
+        if (player == null)
             return;
 
-        if (attack != null && attack.IsAttacking)
+
+        // Attack script controls movement during attack
+        if (attack.IsAttacking)
+        {
+            Debug.Log("CHASE BLOCKED");
             return;
-
-        Vector3 playerPos =
-            GameManagerSingleton.Instance.GetPlayerPosition();
-
-        float moveDir = playerPos.x - transform.position.x;
-
-        Vector2 direction =
-            (playerPos - transform.position).normalized;
-
-
-        if (!attack.PlayerInRange())
-        {
-            Vector2 velocity = rb.linearVelocity;
-
-            velocity.x = direction.x * chaseSpeed;
-
-            rb.linearVelocity = velocity;
-        }
-        else
-        {
-            rb.linearVelocity = new Vector2(
-                0,
-                rb.linearVelocity.y
-            );
-
-            if (attack.PlayerInRange() && attack.CanAttack)
-            {
-
-                StartCoroutine(attack.LungeAttack(playerPos));
-            }
         }
 
-        //sprite flip when chasing
-        if (Mathf.Abs(moveDir) > 0.01f)
+
+        float xDifference =
+            player.position.x - transform.position.x;
+
+
+        // Face player
+        if (Mathf.Abs(xDifference) > 0.01f)
         {
+            FacingDirection = Mathf.Sign(xDifference);
+
             Vector3 scale = transform.localScale;
 
-            scale.x = Mathf.Abs(scale.x) * Mathf.Sign(moveDir);
+            scale.x =
+                Mathf.Abs(scale.x) * FacingDirection;
 
             transform.localScale = scale;
         }
+
+
+        // Start attack
+        if (attack.PlayerInRange())
+        {
+            rb.linearVelocity = new Vector2(
+                0f,
+                rb.linearVelocity.y
+            );
+
+
+            if (attack.CanAttack)
+            {
+                StartCoroutine(
+                    attack.LungeAttack(player.position)
+                );
+            }
+
+            return;
+        }
+
+
+        // Chase player
+        Vector2 velocity = rb.linearVelocity;
+
+        velocity.x =
+            FacingDirection * chaseSpeed;
+
+        rb.linearVelocity = velocity;
     }
 }

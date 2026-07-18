@@ -4,7 +4,6 @@ public class GroundEnemySpawner : EnemySpawner
 {
     [SerializeField] private Transform[] spawnPoints;
 
-    public bool SpawnerEnabled;
     protected override void SpawnEnemy()
     {
         if (enemyPrefabs.Length == 0 || spawnPoints.Length == 0)
@@ -13,12 +12,22 @@ public class GroundEnemySpawner : EnemySpawner
         int enemyIndex = Random.Range(0, enemyPrefabs.Length);
         int spawnIndex = Random.Range(0, spawnPoints.Length);
 
-        Instantiate(
+        GameObject enemy = Instantiate(
             enemyPrefabs[enemyIndex],
             spawnPoints[spawnIndex].position,
             spawnPoints[spawnIndex].rotation
         );
+
+        EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
+
+        if (enemyHealth != null)
+        {
+            enemyHealth.SetRoomDirector(roomDirector);
+        }
+
+        roomDirector.RegisterSpawn();
     }
+
 
 #if UNITY_EDITOR
     private void OnDrawGizmos()

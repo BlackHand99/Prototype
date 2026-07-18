@@ -88,7 +88,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: abdc446672299274eb9df3231f695d82, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -240,22 +240,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1622229654436607152}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8336341c7e0bb5e45a1b851482e00335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyPatrol
-  detectionSizeOffset: 10
-  detectionSize: 19
-  detectInterval: 0.25
-  colliderDistance: 1.05
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 1024
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  boxCollider: {fileID: 7474024567080357523}
   rb: {fileID: 5085378669590806373}
   maxRange: 8
   minRange: 6
@@ -298,21 +287,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 119693800ae051940b4379034199e1d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  attackCooldown: 1
-  range: 2.7
-  attackBoxSize: {x: 3, y: 1.5}
-  damage: 3
+  detectionBox: {x: 4, y: 2}
+  detectionOffset: 0.95
+  damage: 1
+  windupDelay: 1
+  lungeSpeed: 18
+  lungeDuration: 0.5
+  recoveryTime: 2
+  knockbackForce: 20
+  attackBoxSize: {x: 3.25, y: 2.06}
   playerLayer:
     serializedVersion: 2
     m_Bits: 1024
-  boxCollider: {fileID: 7474024567080357523}
   rb: {fileID: 5085378669590806373}
-  windupDelay: 1
-  lungeForce: 20
-  lungeDuration: 0.5
-  recoveryTime: 1
-  knockbackForce: 8
-  isCooldownActive: 0
 --- !u!114 &6415890858077162078
 MonoBehaviour:
   m_ObjectHideFlags: 0

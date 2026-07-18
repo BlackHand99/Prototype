@@ -2,18 +2,25 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    private int health;
-    [SerializeField] private int maxHealth = 3;
+    private float health;
+    private RoomDirector roomDirector;
+
+    [SerializeField] private float maxHealth = 3f;
 
     private void Start()
     {
         health = maxHealth;
     }
+    public void SetRoomDirector(RoomDirector director)
+    {
+        roomDirector = director;
+    }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         health -= damage;
-        if (health <= 0)
+
+        if (health <= 0f)
         {
             Die();
         }
@@ -21,6 +28,7 @@ public class EnemyHealth : MonoBehaviour
 
     private void Die()
     {
+        roomDirector?.RegisterDeath();
         Destroy(gameObject);
     }
 }

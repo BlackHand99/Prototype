@@ -3,180 +3,216 @@ using UnityEngine;
 
 public class Enemy01Attack : MonoBehaviour
 {
-    [SerializeField] private float attackCooldown;
+    [Header("Detection")]
+    [SerializeField] private Vector2 detectionBox = new Vector2(3f, 2f);
+    [SerializeField] private float detectionOffset = 1.5f;
 
-    [SerializeField] private float range;
 
-    [SerializeField]
-    private Vector2 attackBoxSize =
-        new Vector2(3f, 1.5f);
+    [Header("Attack")]
+    [SerializeField] private int damage = 1;
 
-    [SerializeField] private int damage;
+    [SerializeField] private float windupDelay = 0.5f;
+    [SerializeField] private float lungeSpeed = 18f;
+    [SerializeField] private float lungeDuration = 0.2f;
+    [SerializeField] private float recoveryTime = 0.6f;
+
+    [SerializeField] private float knockbackForce = 8f;
+
+
+    [Header("Hurtbox")]
+    [SerializeField] private Vector2 attackBoxSize = new Vector2(1.5f, 1.5f);
     [SerializeField] private LayerMask playerLayer;
-    [SerializeField] private BoxCollider2D boxCollider;
+
+
     [SerializeField] private Rigidbody2D rb;
 
-    //lunging attack stuff
-    [SerializeField] private float windupDelay = 1.0f;
-    [SerializeField] private float lungeForce = 12f;
-    [SerializeField] private float lungeDuration = 0.2f;
-    [SerializeField] private float recoveryTime = 1f;
-    [SerializeField] private float knockbackForce;
+
+    private Animator anim;
+    private Chase chase;
+
+
     private bool attacking;
     private bool hasHitPlayer;
-    private bool lunging;
-    public float attackRange => range;
+
+    private float lungeDirection;
+
+
     public bool IsAttacking => attacking;
 
     public bool CanAttack => !attacking;
-    public bool IsLunging => lunging;
 
-    private Animator anim;
 
-    public bool isCooldownActive;
 
     private void Awake()
     {
         anim = GetComponent<Animator>();
-        isCooldownActive = true;
+        chase = GetComponent<Chase>();
     }
-    public IEnumerator LungeAttack(Vector2 playerPos)
+
+
+
+    public bool PlayerInRange()
+    {
+        Vector2 direction =
+            chase.FacingDirection > 0
+            ? Vector2.right
+            : Vector2.left;
+
+
+        Vector2 center =
+            (Vector2)transform.position +
+            direction * detectionOffset;
+
+
+        Collider2D hit = Physics2D.OverlapBox(
+            center,
+            detectionBox,
+            0f,
+            playerLayer
+        );
+
+
+        return hit != null;
+    }
+
+
+
+    public IEnumerator LungeAttack(Vector2 playerPosition)
     {
         if (attacking)
             yield break;
 
+
         attacking = true;
-
-        // stop current movement
-        rb.linearVelocity = Vector2.zero;
-
-        //switch to windup animation
-        anim.Play("meleeAttack");
-
-        // optional windup delay
-        yield return new WaitForSeconds(windupDelay);
-
-        float dir =
-            Mathf.Sign(playerPos.x - transform.position.x);
-
-        lunging = true;
         hasHitPlayer = false;
 
+
+        rb.linearVelocity = Vector2.zero;
+
+
+        if (anim != null)
+            anim.Play("meleeAttack");
+
+
+        Debug.Log("Lunge started");
+
+
+        yield return new WaitForSeconds(windupDelay);
+
+
+        // Lock direction at the moment of attack
+        lungeDirection = chase.FacingDirection;
+
+
+        Debug.Log(
+            "Lunge direction: " + lungeDirection
+        );
+
+
+        // Ensure sprite matches attack direction
+        transform.localScale = new Vector3(
+            Mathf.Abs(transform.localScale.x) * lungeDirection,
+            transform.localScale.y,
+            transform.localScale.z
+        );
+
+
+        // Apply dash
         rb.linearVelocity = new Vector2(
-            dir * lungeForce,
+            lungeDirection * lungeSpeed,
             rb.linearVelocity.y
         );
 
+
         float timer = 0f;
+
 
         while (timer < lungeDuration)
         {
+            Vector2 hurtboxCenter =
+                (Vector2)transform.position +
+                Vector2.right * lungeDirection * 0.5f;
+
+
             Collider2D hit = Physics2D.OverlapBox(
-                transform.position,
+                hurtboxCenter,
                 attackBoxSize,
-                0,
+                0f,
                 playerLayer
             );
 
-            if (hit != null && !hasHitPlayer)
+
+            if (!hasHitPlayer && hit != null)
             {
-                Health playerHealth = hit.GetComponentInParent<Health>();
+                Health health =
+                    hit.GetComponent<Health>();
 
-                if (playerHealth != null)
+
+                if (health != null)
                 {
-                    Vector2 knockbackDir =
-                        (hit.transform.position - transform.position).normalized;
+                    Vector2 knockback =
+                        (
+                        (Vector2)hit.transform.position -
+                        rb.position
+                        ).normalized;
 
-                    knockbackDir = new Vector2(
-                        knockbackDir.x,
-                        knockbackForce
-                    ).normalized;
 
-                    playerHealth.TakeDamage(
+                    health.TakeDamage(
                         damage,
-                        knockbackDir,
+                        knockback,
                         knockbackForce
                     );
 
-                    if (hit != null)
-                    {
-                        Debug.Log("Lunge hit: " + hit.name);
-                    }
 
                     hasHitPlayer = true;
                 }
             }
 
+
             timer += Time.deltaTime;
+
             yield return null;
         }
 
 
-        // stop lunge
-        rb.linearVelocity = new Vector2(
-            0,
-            rb.linearVelocity.y
-        );
+
+        // Stop dash
+        rb.linearVelocity = Vector2.zero;
+
 
         yield return new WaitForSeconds(recoveryTime);
 
-        lunging = false;
 
         attacking = false;
-
     }
 
-    public bool PlayerInRange()
+
+
+    private void OnDrawGizmosSelected()
     {
-        Vector2 direction =
-            transform.localScale.x > 0
-            ? Vector2.right
-            : Vector2.left;
+        float direction =
+            transform.localScale.x >= 0
+            ? 1f
+            : -1f;
 
-        Vector2 center =
+
+        Gizmos.color = Color.yellow;
+
+
+        Gizmos.DrawWireCube(
             (Vector2)transform.position +
-            direction * range;
-
-        Collider2D hit = Physics2D.OverlapBox(
-            center,
-            attackBoxSize,
-            0,
-            playerLayer
+            Vector2.right * direction * detectionOffset,
+            detectionBox
         );
 
-        return hit != null;
-    }
-
-    private void OnDrawGizmos()
-    {
-        Vector2 direction =
-    transform.localScale.x > 0
-    ? Vector2.right
-    : Vector2.left;
-
-        Vector2 center =
-            (Vector2)transform.position +
-            direction * range;
 
         Gizmos.color = Color.red;
 
+
         Gizmos.DrawWireCube(
-            center,
+            (Vector2)transform.position +
+            Vector2.right * direction * 0.5f,
             attackBoxSize
         );
-    }
-    private void Update()
-    {
-        Collider2D hit =
-            Physics2D.OverlapCircle(
-                transform.position,
-                2f,
-                playerLayer
-            );
-
-        if (hit != null)
-        {
-            Debug.Log("Player found");
-        }
     }
 }

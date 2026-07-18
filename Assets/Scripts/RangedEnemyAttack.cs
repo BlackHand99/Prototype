@@ -6,23 +6,32 @@ public class RangedEnemyAttack : MonoBehaviour
     [SerializeField] private Transform firePoint;
     [SerializeField] private float cooldown = 2f;
 
-    public RangedChase chase;
+    [SerializeField] private RangedChase chase;
+
+    private Transform player;
     private float nextAttackTime;
+
+    private void Start()
+    {
+        player = GameManagerSingleton.Instance.GetPlayer();
+    }
 
     public bool CanShoot()
     {
-        float distance =
-            Vector2.Distance(
-                transform.position,
-                GameManagerSingleton.Instance.GetPlayerPosition()
-            );
+        if (player == null)
+            return false;
+
+        float distance = Vector2.Distance(
+            transform.position,
+            player.position
+        );
 
         return distance <= chase.attackDistance;
     }
 
     private void Update()
     {
-        if (!GameManagerSingleton.Instance.GlobalAlert)
+        if (player == null)
             return;
 
         if (!CanShoot())
@@ -33,24 +42,19 @@ public class RangedEnemyAttack : MonoBehaviour
 
         Shoot();
 
-        nextAttackTime =
-            Time.time + cooldown;
+        nextAttackTime = Time.time + cooldown;
     }
 
     private void Shoot()
     {
-        GameObject beak =
-            Instantiate(
-                beakProjectile,
-                firePoint.position,
-                Quaternion.identity
-            );
+        GameObject beak = Instantiate(
+            beakProjectile,
+            firePoint.position,
+            Quaternion.identity
+        );
 
         Vector2 direction =
-            (
-                GameManagerSingleton.Instance.GetPlayerPosition()
-                - firePoint.position
-            ).normalized;
+            ((Vector2)player.position - (Vector2)firePoint.position).normalized;
 
         beak.GetComponent<BeakProjectile>()
             .Initialize(direction);

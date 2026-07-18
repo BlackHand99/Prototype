@@ -5,7 +5,7 @@ public class ShieldComponent : MonoBehaviour
     public bool IsFrontHit(Vector2 projectilePosition)
     {
         float facingDirection =
-            Mathf.Sign(transform.localScale.x);
+            Mathf.Sign(transform.root.localScale.x);
 
         float projectileDirection =
             Mathf.Sign(
@@ -13,6 +13,6 @@ public class ShieldComponent : MonoBehaviour
                 transform.position.x
             );
 
-        return facingDirection != projectileDirection;
+        return facingDirection == projectileDirection;
     }
 }

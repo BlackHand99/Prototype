@@ -85,7 +85,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 15477de5f64531e438c518cb397b6726, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -219,12 +219,12 @@ MonoBehaviour:
   throwPoint: {fileID: 7039308323538007386}
   throwForce: 8
   attackCooldown: 2
-  rangeW: 5
-  rangeH: 4
+  rangeW: 4.8
+  rangeH: 15.35
   playerLayer:
     serializedVersion: 2
     m_Bits: 1024
-  boxOffset: {x: 2.5, y: -3.5}
+  boxOffset: {x: 3.34, y: -7.1}
   isCooldownActive: 0
 --- !u!114 &4871296687726302631
 MonoBehaviour:
@@ -239,11 +239,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   moveSpeed: 2
-  boxCollider: {fileID: 6851596910462503832}
   yVelocity: 0.3
   stiffness: 20
   damping: 10
-  flyHeight: 6
+  flyHeight: 9
   attackRange: 2
 --- !u!114 &7044687161621606490
 MonoBehaviour:

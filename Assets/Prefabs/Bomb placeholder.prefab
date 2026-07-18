@@ -103,12 +103,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1692626635609274568}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9a2f0e71cf51a141a75509a0983e32c, type: 3}
+  m_Script: {fileID: 11500000, guid: ef496a1ccddf65e4c90d76536cb91e03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  fuzeTime: 3
-  explosionRadius: 0.25
-  damage: 3
+  fuzeTime: 2
+  explosionRadius: 0.5
+  damage: 1
   playerLayer:
     serializedVersion: 2
     m_Bits: 1024

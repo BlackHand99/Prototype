@@ -7,7 +7,6 @@ public class FlyingEnemySpawner : EnemySpawner
     [SerializeField] private float lineYOffset = -6f;
     [SerializeField] private float lineXOffset = 2f;
 
-    public bool SpawnerEnabled;
     protected override void SpawnEnemy()
     {
         if (enemyPrefabs.Length == 0)
@@ -23,36 +22,38 @@ public class FlyingEnemySpawner : EnemySpawner
             Quaternion.identity
         );
 
+        EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
+
+        if (enemyHealth != null)
+        {
+            enemyHealth.SetRoomDirector(roomDirector);
+        }
+
+        roomDirector.RegisterSpawn();
     }
 
-    Vector3 GetRandomLinePoint()
+    private Vector3 GetRandomLinePoint()
     {
-        Vector3 lineCenter =
-            transform.position +
-            Vector3.up * lineYOffset +
-            Vector3.right * lineXOffset;
+        float x = transform.position.x + lineXOffset + Random.Range(-lineWidth * 0.5f, lineWidth * 0.5f);
+        float y = transform.position.y + lineYOffset;
 
-        float randomX =
-            Random.Range(-lineWidth / 2f, lineWidth / 2f);
-
-        return lineCenter + Vector3.right * randomX;
+        return new Vector3(x, y, 0f);
     }
 
-    // Draw line in Scene view
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.cyan;
 
-        Vector3 lineCenter =
-            transform.position + Vector3.up * lineYOffset + Vector3.right * lineXOffset;
+        Vector3 left = new Vector3(
+            transform.position.x + lineXOffset - lineWidth * 0.5f,
+            transform.position.y + lineYOffset,
+            0f);
 
-        Vector3 left =
-            lineCenter + Vector3.left * (lineWidth / 2f);
-
-        Vector3 right =
-            lineCenter + Vector3.right * (lineWidth / 2f);
+        Vector3 right = new Vector3(
+            transform.position.x + lineXOffset + lineWidth * 0.5f,
+            transform.position.y + lineYOffset,
+            0f);
 
         Gizmos.DrawLine(left, right);
     }
-
 }

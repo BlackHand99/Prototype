@@ -5,8 +5,8 @@ public abstract class EnemySpawner : MonoBehaviour
 {
     [SerializeField] protected GameObject[] enemyPrefabs;
     [SerializeField] protected float spawnInterval = 3f;
+    [SerializeField] protected RoomDirector roomDirector;
 
-    private bool spawnActive;
     private bool spawnerEnabled;
 
     public void EnableSpawner()
@@ -28,11 +28,10 @@ public abstract class EnemySpawner : MonoBehaviour
     {
         while (spawnerEnabled)
         {
-            spawnActive = false;
-
             yield return new WaitForSeconds(spawnInterval);
 
-            spawnActive = true;
+            if (!spawnerEnabled)
+                yield break;
 
             SpawnEnemy();
         }
@@ -40,4 +39,3 @@ public abstract class EnemySpawner : MonoBehaviour
 
     protected abstract void SpawnEnemy();
 }
-

@@ -13,28 +13,29 @@ public class RangedChase : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
 
     private RangedEnemyAttack attack;
-
-    private bool IsChasing =>
-        GameManagerSingleton.Instance.GlobalAlert;
+    private Transform player;
 
     private void Awake()
     {
         attack = GetComponent<RangedEnemyAttack>();
     }
 
-    private void Update()
+    private void Start()
     {
-        if (!IsChasing)
+        player = GameManagerSingleton.Instance.GetPlayer();
+    }
+
+    private void FixedUpdate()
+    {
+        if (player == null)
             return;
 
-        Vector3 playerPos =
-            GameManagerSingleton.Instance.GetPlayerPosition();
+        Vector2 playerPos = player.position;
 
-        float distance =
-            Vector2.Distance(
-                transform.position,
-                playerPos
-            );
+        float distance = Vector2.Distance(
+            rb.position,
+            playerPos
+        );
 
         float moveDir =
             playerPos.x - transform.position.x;
@@ -56,20 +57,16 @@ public class RangedChase : MonoBehaviour
         if (distance > approachDistance)
         {
             // Move closer
-            float dir = Mathf.Sign(moveDir);
-
-            velocity.x = dir * moveSpeed;
+            velocity.x = Mathf.Sign(moveDir) * moveSpeed;
         }
         else if (distance < retreatDistance)
         {
             // Move away
-            float dir = -Mathf.Sign(moveDir);
-
-            velocity.x = dir * moveSpeed;
+            velocity.x = -Mathf.Sign(moveDir) * moveSpeed;
         }
         else
         {
-            // Stay in shooting range
+            // Stay in ideal range
             velocity.x = 0;
         }
 

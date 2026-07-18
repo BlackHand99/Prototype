@@ -35,14 +35,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4493451492308323}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.7, y: -3.44, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6122638792977447097}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &426097119848880225
 SpriteRenderer:
   serializedVersion: 2
@@ -90,11 +90,11 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 67d8c79269350e3438ae098fd5b8796d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 2.15, y: 1.9}
@@ -247,21 +247,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 119693800ae051940b4379034199e1d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy01Attack
-  attackCooldown: 1
-  range: 2.56
-  attackBoxSize: {x: 3, y: 2.09}
-  damage: 3
+  detectionBox: {x: 5, y: 2.52}
+  detectionOffset: 1.42
+  damage: 1
+  windupDelay: 1
+  lungeSpeed: 18
+  lungeDuration: 0.5
+  recoveryTime: 1
+  knockbackForce: 20
+  attackBoxSize: {x: 3.23, y: 2.35}
   playerLayer:
     serializedVersion: 2
     m_Bits: 1024
-  boxCollider: {fileID: 7538069057268739964}
   rb: {fileID: 2653752577167348203}
-  windupDelay: 1
-  lungeForce: 20
-  lungeDuration: 0.5
-  recoveryTime: 1
-  knockbackForce: 0
-  isCooldownActive: 0
 --- !u!114 &2246247694786803692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,22 +281,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4493451492308323}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8336341c7e0bb5e45a1b851482e00335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyPatrol
-  detectionSizeOffset: 2.51
-  detectionSize: 16.87
-  detectInterval: 0.25
-  colliderDistance: 3.82
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 1024
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  boxCollider: {fileID: 7538069057268739964}
   rb: {fileID: 2653752577167348203}
   maxRange: 8
   minRange: 6
@@ -381,7 +368,7 @@ Transform:
   m_GameObject: {fileID: 8261214526918707740}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: -0.9878919, y: 0.07056713, z: 0}
+  m_LocalPosition: {x: 1.83, y: 0.07056713, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -400,7 +387,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 16119
@@ -421,7 +408,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.42, y: -0.07}
+  m_Offset: {x: 0.32, y: -0.07}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -431,7 +418,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.58, y: 2.1}
+  m_Size: {x: 0.82, y: 2.4}
   m_EdgeRadius: 0
 --- !u!114 &3807535446320615844
 MonoBehaviour:
