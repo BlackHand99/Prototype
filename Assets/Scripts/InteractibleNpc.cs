@@ -5,6 +5,8 @@ public class InteractibleNpc : MonoBehaviour, IInteractible
 {
     private WeaponManager _weaponManager;
 
+    private Health playerHealth;
+
     [SerializeField] private UpgradeMenu upgradeMenu;
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -28,5 +30,12 @@ public class InteractibleNpc : MonoBehaviour, IInteractible
     public void Interact(GameObject player)
     {
         upgradeMenu.Open(_weaponManager);
+
+        Health playerHealth = player.GetComponent<Health>();
+
+        if (playerHealth != null)
+        {
+            playerHealth.InteractHeal(1);
+        }
     }
 }

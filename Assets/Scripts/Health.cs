@@ -68,4 +68,8 @@ public class Health : MonoBehaviour
         maxHealth += amount;
         CurrentHealth += amount;
     }
+    public void InteractHeal(float amount)
+    {
+        CurrentHealth += amount;
+    }
 }

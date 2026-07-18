@@ -11154,10 +11154,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1203913350}
-  - component: {fileID: 1203913349}
   - component: {fileID: 1203913348}
   - component: {fileID: 1203913347}
   - component: {fileID: 1203913351}
+  - component: {fileID: 1203913349}
   m_Layer: 0
   m_Name: TutorialNpc (1)
   m_TagString: Untagged
