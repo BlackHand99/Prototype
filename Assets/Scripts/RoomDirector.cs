@@ -71,10 +71,8 @@ public class RoomDirector : MonoBehaviour
             spawner.DisableSpawner();
         }
 
-        if (enemiesAlive <= 0)
-        {
-            EncounterComplete();
-        }
+        // End the encounter immediately
+        EncounterComplete();
     }
 
     public void RegisterSpawn()
@@ -85,19 +83,14 @@ public class RoomDirector : MonoBehaviour
     public void RegisterDeath()
     {
         enemiesAlive--;
-
         Debug.Log($"Enemies Alive: {enemiesAlive}");
-
-        if (!encounterFinished &&
-            spawningFinished &&
-            enemiesAlive <= 0)
-        {
-            EncounterComplete();
-        }
     }
 
     private void EncounterComplete()
     {
+        if (encounterFinished)
+            return;
+
         encounterFinished = true;
 
         foreach (EnemySpawner spawner in spawners)
@@ -105,8 +98,21 @@ public class RoomDirector : MonoBehaviour
             spawner.DisableSpawner();
         }
 
-        roomActive = false;
+        EnemyHealth[] remainingEnemies = FindObjectsByType<EnemyHealth>(
+            FindObjectsSortMode.None
+        );
 
+        foreach (EnemyHealth enemy in remainingEnemies)
+        {
+            if (enemy.RoomDirector == this)
+            {
+                Destroy(enemy.gameObject);
+            }
+        }
+
+        enemiesAlive = 0;
+
+        roomActive = false;
         rightWall.enabled = false;
 
         Debug.Log("Encounter Complete");
